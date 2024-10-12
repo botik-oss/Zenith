@@ -1,5 +1,5 @@
 from aiogram import types
-from ZenithBot.bot.core.constants import adress
+from core.constants import adress
 
 
 async def adresses(callback: types.CallbackQuery):

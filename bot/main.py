@@ -1,8 +1,8 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from keyboards.menu import Menu
-from ZenithBot.bot.handlers.contacts import contacts  # Import the contacts function
-from ZenithBot.bot.handlers.addresses import adresses
+from handlers.contacts import contacts  # Import the contacts function
+from handlers.addresses import adresses
 from aiogram import F
 
 # Initialize bot and dispatcher

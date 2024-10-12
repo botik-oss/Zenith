@@ -1,6 +1,7 @@
 from aiogram import types
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from ZenithBot.bot.handlers.contacts import contacts
+from handlers.contacts import contacts
+
 
 class Menu:
     def __init__(self):
@@ -33,6 +34,7 @@ class Menu:
             text="главное меню",
             callback_data="start"
         )
+
     def back_to_menu(self):
         self.builder.row(
             self.button_7
@@ -46,4 +48,4 @@ class Menu:
         self.builder.row(self.button_5)
         self.builder.row(self.button_6)
 
-       # return self.builder
+    # return self.builder
