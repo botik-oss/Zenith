@@ -1,5 +1,3 @@
-clients_database = "./database/clients.db"  # путь к базе данных клиентов
-
 contact = (
         "Контакты:\n"
         "1. Телеграмм: [zenit_bk_krsk](https://t.me/zenit_bk_krsk)\n"

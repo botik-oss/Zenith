@@ -4,9 +4,10 @@ from keyboards.menu import Menu
 from handlers.contacts import contacts  # Import the contacts function
 from handlers.addresses import adresses
 from aiogram import F
+from core import config
 
 # Initialize bot and dispatcher
-TOKEN = '7749968130:AAFjs5xMiI1gBhIvn5C1qNYeEIQjYpABMPM'
+TOKEN = config.TOKEN
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 
@@ -14,15 +15,18 @@ dp = Dispatcher()
 menu = Menu()
 menu.main_menu()
 
+
 @dp.message(Command("start"))
 async def cmd_start(message: types.Message):
     await message.answer("Выберите опцию:",
                          reply_markup=menu.builder.as_markup(resize_keyboard=True))
 
+
 # Add a callback handler for the contacts button
 @dp.callback_query(F.data == "contacts")
 async def handle_contacts(callback: types.CallbackQuery):
     await contacts(callback)
+
 
 @dp.callback_query(F.data == "adresses")
 async def handle_adresses(callback: types.CallbackQuery):

@@ -1,8 +1,8 @@
 import aiosqlite
 
-from core import constants
+from core import config
 
-CLIENTS_DATABASE = constants.clients_database
+CLIENTS_DATABASE = config.CLIENTS_DATABASE
 TABLE_NAME = "clients_telegram"
 
 
@@ -25,7 +25,7 @@ class ClientsTelegramDatabase:
             ''')
             await connection.commit()
 
-    async def add_client(self, client_number: int, telegram_id: str, telegram_username: str) -> None:
+    async def add_client(self, client_number: int, telegram_id: int, telegram_username: str) -> None:
         async with aiosqlite.connect(self.database_path) as connection:
             await connection.execute(f'''
                 INSERT INTO {TABLE_NAME} (client_number, telegram_id, telegram_username)

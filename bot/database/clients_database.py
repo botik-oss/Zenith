@@ -1,9 +1,9 @@
 import csv
 import aiosqlite
-from core import constants
+from core import config
 from database.clients_telegram_database import ClientsTelegramDatabase
 
-CLIENTS_DATABASE = constants.clients_database
+CLIENTS_DATABASE = config.CLIENTS_DATABASE
 TABLE_NAME = "clients"
 
 
