@@ -20,3 +20,13 @@ adress = (
         "[ул. Авиаторов 68а](https://yandex.ru/maps/-/CDXOq09z)\n"
         "[Ул. Крупской 1г](https://yandex.ru/maps/-/CDXOqHyP)\n"
     )
+
+freebet_birth = ("Фрибет в день рождения")
+
+freebet_reg = ("Фрибет за регистрацию")
+
+freebet_link_discription01 = ("Отлично, лови ссылку на группу!")
+
+freebet_link_discription02 = ("Чтобы получить доступ к группе с розыгрышами,"
+                              " подпишись на наш канал")
+

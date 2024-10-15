@@ -31,15 +31,29 @@ class Menu:
         )
         self.button_7 = types.InlineKeyboardButton(
             text="главное меню",
-            callback_data="start"
+            callback_data="menu"
+        )
+        self.button_8 = types.InlineKeyboardButton(
+            text="фрибет за регистрацию",
+            callback_data="freebet_reg"
+        )
+        self.button_9 = types.InlineKeyboardButton(
+            text="фрибет в день рождения",
+            callback_data="freebet_birth"
+        )
+        self.button_10 = types.InlineKeyboardButton(
+            text="группа с розыгрышами",
+            callback_data="group"
         )
 
     def back_to_menu(self):
+        self.builder = InlineKeyboardBuilder()
         self.builder.row(
             self.button_7
         )
 
     def main_menu(self):
+        self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_1)
         self.builder.row(self.button_2)
         self.builder.row(self.button_3)
@@ -48,3 +62,13 @@ class Menu:
         self.builder.row(self.button_6)
 
     # return self.builder
+
+    def event(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_8)
+        self.builder.row(self.button_9)
+        self.builder.row(self.button_10)
+        self.builder.row(self.button_7)
+
+
+menu = Menu()
