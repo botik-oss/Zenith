@@ -1,8 +1,8 @@
 from aiogram import types
 from aiogram.types import FSInputFile
 
-from ZenithBot.bot.core.constants import adress
-from ZenithBot.bot.keyboards.menu import menu
+from bot.core.constants import adress
+from bot.keyboards.menu import menu
 
 
 

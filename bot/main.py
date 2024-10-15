@@ -1,14 +1,15 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
 from aiogram.types import FSInputFile
-from ZenithBot.bot.handlers.contacts import contacts  # Import the contacts function
-from ZenithBot.bot.handlers.addresses import adresses
-from ZenithBot.bot.handlers.info import stocks, free_bet_01, free_bet_02
+from bot.handlers.contacts import contacts  # Import the contacts function
+from bot.handlers.addresses import adresses
+from bot.handlers.complaints import complaints_1, complaints_2
+from bot.handlers.info import stocks, free_bet_01, free_bet_02
 from aiogram import F
-from ZenithBot.bot.keyboards.menu import menu
+from bot.keyboards.menu import menu
 
 # Initialize bot and dispatcher
-TOKEN = '7859510119:AAEGBXuw1f52n14AI6MDX6vUFG14ol580Vc'
+TOKEN = '7536990395:AAFpT5VXsx0VuBuqoG5ha7h5pzeBQCIG1SM'
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 photo_01 = FSInputFile("Черный.jpg")
@@ -48,6 +49,14 @@ async def stocks_menu(callback: types.CallbackQuery):
 @dp.callback_query(F.data == "freebet_reg")
 async def stocks_menu(callback: types.CallbackQuery):
     await free_bet_02(callback)
+
+@dp.callback_query(F.data == "complain_1")
+async def complain_1(callback: types.CallbackQuery):
+    await complaints_1(callback)
+
+@dp.callback_query(F.data == "complain_2")
+async def complain_2(callback: types.CallbackQuery):
+    await complaints_2(callback)
 
 # Start polling if this script is the main one
 if __name__ == "__main__":

@@ -1,8 +1,8 @@
 from aiogram import types, Bot
 from aiogram.types import FSInputFile
-from ZenithBot.bot.core.constants import (freebet_birth,
+from bot.core.constants import (freebet_birth,
 freebet_reg, freebet_link_discription01, freebet_link_discription02)
-from ZenithBot.bot.keyboards.menu import menu
+from bot.keyboards.menu import menu
 
 TOKEN = '7749968130:AAFjs5xMiI1gBhIvn5C1qNYeEIQjYpABMPM'
 bot = Bot(token=TOKEN)

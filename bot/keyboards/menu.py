@@ -23,7 +23,7 @@ class Menu:
         )
         self.button_5 = types.InlineKeyboardButton(
             text="Жалобы",
-            callback_data="complaints"
+            callback_data="complain_1"
         )
         self.button_6 = types.InlineKeyboardButton(
             text="Личный кабинет",
@@ -44,6 +44,14 @@ class Menu:
         self.button_10 = types.InlineKeyboardButton(
             text="группа с розыгрышами",
             callback_data="group"
+        )
+        self.button_11 = types.InlineKeyboardButton(
+            text="оставить жалобу",
+            callback_data="complain_2"
+        )
+        self.button_12 = types.InlineKeyboardButton(
+            text="отмена",
+            callback_data="complain_1"
         )
 
     def back_to_menu(self):
@@ -70,6 +78,14 @@ class Menu:
         self.builder.row(self.button_10)
         self.builder.row(self.button_7)
 
+    def complaine_1(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_11)
+        self.builder.row(self.button_7)
+
+    def complaine_2(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_12)
 
 
 menu = Menu()
