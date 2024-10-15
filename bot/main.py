@@ -30,6 +30,7 @@ async def cmd_start(message: types.Message):
 
 @dp.callback_query(F.data == "menu")
 async def return_main_menu(callback: types.CallbackQuery):
+    menu.main_menu()
     await callback.message.answer(text="Выберите опцию:",
                                   reply_markup=menu.builder.as_markup(resize_keyboard=True))
 
