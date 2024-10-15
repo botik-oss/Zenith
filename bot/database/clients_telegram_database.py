@@ -38,9 +38,19 @@ class ClientsTelegramDatabase:
                 DELETE FROM {TABLE_NAME} WHERE client_number = ?
             ''', (client_number,))
 
-    async def check_client_exist(self, client_number: int) -> bool:
+    async def check_client_exist_by_number(self, client_number: int) -> bool:
         async with aiosqlite.connect(self.database_path) as connection:
             async with connection.execute(f'''
                 SELECT 1 FROM {TABLE_NAME} WHERE client_number = ?
             ''', (client_number,)) as cursor:
                 return await cursor.fetchone() is not None
+
+    async def check_client_exist_by_id(self, telegram_id: int) -> bool:
+        async with aiosqlite.connect(self.database_path) as connection:
+            async with connection.execute(f'''
+                SELECT 1 FROM {TABLE_NAME} WHERE telegram_id = ?
+            ''', (telegram_id,)) as cursor:
+                return await cursor.fetchone() is not None
+
+
+clients_telegram = ClientsTelegramDatabase()

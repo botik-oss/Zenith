@@ -1,6 +1,5 @@
 from aiogram import types
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-from handlers.contacts import contacts
 
 
 class Menu:
@@ -28,7 +27,7 @@ class Menu:
         )
         self.button_6 = types.InlineKeyboardButton(
             text="Личный кабинет",
-            callback_data="accaunt"
+            callback_data="account"
         )
         self.button_7 = types.InlineKeyboardButton(
             text="главное меню",

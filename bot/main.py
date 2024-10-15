@@ -1,15 +1,20 @@
 from aiogram import Bot, Dispatcher, types
 from aiogram.filters import Command
+from aiogram.fsm.storage.memory import MemoryStorage
+
 from keyboards.menu import Menu
 from handlers.contacts import contacts  # Import the contacts function
 from handlers.addresses import adresses
 from aiogram import F
 from core import config
+from handlers import account
 
 # Initialize bot and dispatcher
 TOKEN = config.TOKEN
 bot = Bot(token=TOKEN)
-dp = Dispatcher()
+dp = Dispatcher(storage=MemoryStorage())
+
+dp.include_router(account.router)
 
 # Command handler for /start
 menu = Menu()

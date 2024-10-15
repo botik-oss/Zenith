@@ -14,7 +14,8 @@ class AdminsDatabase:
         async with aiosqlite.connect(self.database_path) as connection:
             await connection.execute(f'''
                 CREATE TABLE IF NOT EXISTS {TABLE_NAME} (
-                    telegram id INTEGER
+                    telegram_id INTEGER
+                )
             ''')
             await connection.commit()
 
@@ -32,3 +33,6 @@ class AdminsDatabase:
                 SELECT 1 FROM {TABLE_NAME} WHERE telegram_id = ?
             ''', (telegram_id,)) as cursor:
                 return await cursor.fetchone() is not None
+
+
+admins = AdminsDatabase()

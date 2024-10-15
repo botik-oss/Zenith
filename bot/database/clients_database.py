@@ -1,7 +1,7 @@
 import csv
 import aiosqlite
 from core import config
-from database.clients_telegram_database import ClientsTelegramDatabase
+from database.clients_telegram_database import clients_telegram
 
 CLIENTS_DATABASE = config.CLIENTS_DATABASE
 TABLE_NAME = "clients"
@@ -28,7 +28,7 @@ class ClientsDatabase:
 
             await connection.commit()
 
-    async def update_table(self, path: str) -> None:
+    async def update_table(self) -> None:
         try:
             # удаление старой таблицы
             async with aiosqlite.connect(self.database_path) as connection:
@@ -36,17 +36,16 @@ class ClientsDatabase:
                     await cursor.execute(f'DELETE FROM {TABLE_NAME}')
 
                     # инициализация нужных переменных
-                    with open(f'{path}', 'r', encoding='utf-8') as csvfile:
+                    with open(f'{self.database_path}', 'r', encoding='utf-8') as csvfile:
                         reader = csv.reader(csvfile)  # итератор файла
                         next(reader)  # пропускаем заголовок таблицы
                         # экземпляр для работы с тг таблицей клиентов
-                        clients_telegram = ClientsTelegramDatabase()
 
                         # заполнение таблицы и валидация меток
                         for row in reader:
                             client_number, name, gender, date_of_birth, mark, appendix = row
                             if mark:
-                                if await clients_telegram.check_client_exist(client_number):
+                                if await clients_telegram.check_client_exist_by_number(client_number):
                                     await clients_telegram.remove_client(client_number, cursor)
                                 continue
                             await cursor.execute(f'''
@@ -65,3 +64,6 @@ class ClientsDatabase:
                 SELECT 1 FROM {TABLE_NAME} WHERE client_number = ?
             ''', (client_number,)) as cursor:
                 return await cursor.fetchone() is not None
+
+
+clients = ClientsDatabase()
