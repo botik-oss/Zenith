@@ -28,19 +28,17 @@ class ClientsDatabase:
 
             await connection.commit()
 
-    async def update_table(self) -> None:
+    async def update_table(self, path) -> None:
         try:
             # удаление старой таблицы
             async with aiosqlite.connect(self.database_path) as connection:
                 async with connection.cursor() as cursor:
                     await cursor.execute(f'DELETE FROM {TABLE_NAME}')
-
                     # инициализация нужных переменных
-                    with open(f'{self.database_path}', 'r', encoding='utf-8') as csvfile:
+                    with open(f'{path}', 'r', encoding='utf-8') as csvfile:
                         reader = csv.reader(csvfile)  # итератор файла
                         next(reader)  # пропускаем заголовок таблицы
                         # экземпляр для работы с тг таблицей клиентов
-
                         # заполнение таблицы и валидация меток
                         for row in reader:
                             client_number, name, gender, date_of_birth, mark, appendix = row
@@ -52,7 +50,6 @@ class ClientsDatabase:
                                 INSERT INTO {TABLE_NAME} (client_number, name, gender, date_of_birth)
                                 VALUES (?, ?, ?, ?)
                             ''', (client_number, name, gender, date_of_birth))
-
                 await connection.commit()
 
         except Exception as e:

@@ -8,7 +8,7 @@ class Account:
 
         self.button_1 = types.InlineKeyboardButton(
             text="Главное меню",
-            callback_data="start"
+            callback_data="menu"
         )
 
         self.button_2 = types.InlineKeyboardButton(
@@ -17,11 +17,13 @@ class Account:
         )
 
     def back_to_menu(self):
+        self.builder = InlineKeyboardBuilder()
         self.builder.row(
             self.button_1
         )
 
     def build_account(self):
+        self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_2)
         self.builder.row(self.button_1)
 

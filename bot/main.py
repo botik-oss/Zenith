@@ -27,6 +27,12 @@ async def cmd_start(message: types.Message):
                          reply_markup=menu.builder.as_markup(resize_keyboard=True))
 
 
+@dp.callback_query(F.data == "menu")
+async def return_main_menu(callback: types.CallbackQuery):
+        await callback.message.answer(text="Выберите опцию:",
+                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))
+
+
 # Add a callback handler for the contacts button
 @dp.callback_query(F.data == "contacts")
 async def handle_contacts(callback: types.CallbackQuery):

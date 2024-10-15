@@ -11,24 +11,33 @@ router = Router()
 
 @router.callback_query(F.data == "account")
 async def log_account(callback: types.CallbackQuery, state: FSMContext):
-    print('1')
-    user_id = callback.message.from_user.id
+    user_id = callback.from_user.id
     if not await clients_telegram.check_client_exist_by_id(user_id):
+        acc.back_to_menu()
         await callback.message.answer("Личным кабинетом могут пользоваться только авторизованные пользователи!\n"
                                       "\nЧтобы авторизоваться введи  свой номер игрока",
                                       reply_markup=acc.builder.as_markup(resize_keyboard=True))
         await state.set_state(Account.registration)
     else:
+        acc.build_account()
         await callback.message.answer("Личный кабинет",
                                       reply_markup=acc.builder.as_markup(resize_keyboard=True))
 
 
 @router.message(Account.registration)
-async def registrate_account(message: types.Message):
+async def registrate_account(message: types.Message, state: FSMContext):
     number = message.text
+    acc.back_to_menu()
+    await state.clear()
     if await clients.check_client_exist(number) and not (await clients_telegram.check_client_exist_by_number(number)):
         user_id = message.from_user.id
         user_username = message.from_user.username
         await clients_telegram.add_client(int(number), user_id, user_username)
+        await message.answer("Вы успешно зарегестрированы",
+                             reply_markup=acc.builder.as_markup(resize_keyboard=True))
+    elif await clients_telegram.check_client_exist_by_number(int(number)):
+        await message.answer("Этот номер уже занят. Уточни у кассира",
+                             reply_markup=acc.builder.as_markup(resize_keyboard=True))
     else:
-        print('2')
+        await message.answer("Такого номера игрока нет в базе данных. Уточни у кассира",
+                             reply_markup=acc.builder.as_markup(resize_keyboard=True))
