@@ -71,5 +71,15 @@ class Menu:
         self.builder.row(self.button_7)
 
 
+    def new_button(self, text, callback):
+        self.builder = InlineKeyboardBuilder()
+        self.button_1 = types.InlineKeyboardButton(
+            text=text,
+            callback_data=callback
+        )
+
+    def question(self):
+        self.builder = InlineKeyboardBuilder()
+
 
 menu = Menu()
