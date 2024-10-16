@@ -11,6 +11,7 @@ from aiogram.filters import Command, StateFilter
 from aiogram import Router
 from aiogram.fsm.context import FSMContext
 from bot.core.constants import complaints
+from bot.handlers.complaints import accept_to_complaint, make_complaint, send_complaint
 # Initialize bot and dispatcher
 TOKEN = '7536990395:AAFpT5VXsx0VuBuqoG5ha7h5pzeBQCIG1SM'
 bot = Bot(token=TOKEN)
@@ -62,48 +63,16 @@ async def complain_menu(callback: types.CallbackQuery, state: FSMContext):
 
 
 @router.callback_query(Complaint_menu.action)
-async def accept_to_complaint(callback: types.CallbackQuery, state: FSMContext):
-    # Установим состояние в Complaint_menu.complaint
-    await state.set_state(Complaint_menu.complaint)
-    menu.complaine_1()
- # Отправим меню menu.complaine_1()
-    photo_03 = FSInputFile("Черный.jpg")
-    await callback.message.answer_photo(photo_03, complaints[0],
-                                        parse_mode='Markdown',
-                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))
+async def complaint_menu_1(callback: types.CallbackQuery, state=FSMContext):
+    await accept_to_complaint(callback, state)
 
 @router.callback_query(Complaint_menu.complaint)
-async def make_complaint(callback: types.CallbackQuery, state=FSMContext):
-    menu.complaine_2()
-    photo_03 = FSInputFile("Черный.jpg")
-    print(1)
-    print(callback.data)
-    await callback.message.answer_photo(photo_03, complaints[1],
-                                        parse_mode='Markdown',
-                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))
-    if callback.data == "complaint_1":
-        await state.set_state(Complaint_menu.action)
+async def complaint_menu_2(callback: types.CallbackQuery, state=FSMContext):
+    await make_complaint(callback, state)
 
 @router.message(Complaint_menu.complaint)
-async def send_complaint(message: types.Message, state=FSMContext):
-    print(1)
-    mes = "Жалоба: " + message.text
-    photo_03 = FSInputFile("Черный.jpg")
-    menu.complaine_1()
-    await message.answer("Жалоба была отправлена!")
-    await send_message(1041359456, mes)
-    await state.set_state(Complaint_menu.action)
-    await message.answer_photo(photo_03, complaints[1],
-                                        parse_mode='Markdown',
-                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))
-
-
-
-async def send_message (admin_id, text):
-    await bot.send_message(admin_id, text)
-
-
-
+async def send_complaint_to_admin(message: types.Message, state=FSMContext):
+    await send_complaint(1041359456, message, state)
 
 # Start polling if this script is the main one
 if __name__ == "__main__":
