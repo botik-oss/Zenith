@@ -3,10 +3,12 @@ from aiogram.types import FSInputFile
 from ZenithBot.bot.keyboards.menu import menu
 from ZenithBot.bot.core.constants import question
 
+
 def add_button(text):
-    button_number = 0
+    button_number = len(menu.question_buttons) - 1
     button_callback = "new_button" + str(button_number)
     menu.new_button(text, button_callback)
+
 
 async def ask_question(callback: types.CallbackQuery):
     menu.question()
