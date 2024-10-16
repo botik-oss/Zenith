@@ -5,7 +5,7 @@ from core.constants import contact
 from keyboards.menu import menu
 
 
-async def contacts(callback: types.CallbackQuery):
+async def contacts(callback: types.CallbackQuery) -> None:
     menu.back_to_menu()
     photo_02 = FSInputFile("Черный.jpg")
 

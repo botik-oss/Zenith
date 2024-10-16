@@ -10,7 +10,7 @@ router = Router()
 
 
 @router.callback_query(F.data == "account")
-async def log_account(callback: types.CallbackQuery, state: FSMContext):
+async def log_account(callback: types.CallbackQuery, state: FSMContext) -> None:
     user_id = callback.from_user.id
     if not await clients_telegram.check_client_exist_by_id(user_id):
         acc.back_to_menu()
@@ -25,12 +25,12 @@ async def log_account(callback: types.CallbackQuery, state: FSMContext):
 
 
 @router.message(Account.registration)
-async def registrate_account(message: types.Message, state: FSMContext):
+async def registrate_account(message: types.Message, state: FSMContext) -> None:
     number = message.text
     acc.back_to_menu()
     await state.clear()
     if await clients.check_client_exist(number) and not (await clients_telegram.check_client_exist_by_number(number)):
-        user_id = message.from_user.id
+        user_id = message.from_userttttid
         user_username = message.from_user.username
         await clients_telegram.add_client(int(number), user_id, user_username)
         await message.answer("Вы успешно зарегестрированы",

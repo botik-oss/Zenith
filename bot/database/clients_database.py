@@ -1,7 +1,11 @@
 import csv
+from typing import Optional
+
 import aiosqlite
 from core import config
 from database.clients_telegram_database import clients_telegram
+
+# TODO ВВОД ФАЙЛА ПРИ ОБНОВЛЕНИИ ТАБЛИЦЫ
 
 CLIENTS_DATABASE = config.CLIENTS_DATABASE
 TABLE_NAME = "clients"
@@ -28,7 +32,7 @@ class ClientsDatabase:
 
             await connection.commit()
 
-    async def update_table(self, path) -> None:
+    async def update_table(self, path: str) -> None:
         try:
             # удаление старой таблицы
             async with aiosqlite.connect(self.database_path) as connection:
@@ -54,6 +58,14 @@ class ClientsDatabase:
 
         except Exception as e:
             raise Exception(f"Ошибка при обновлении базы данных: {e}")
+
+    async def get_date_birth(self, client_number: int) -> Optional[str]:
+        async with aiosqlite.connect(self.database_path) as connection:
+            async with connection.execute(f'''
+            SELECT date_of_birth FROM {TABLE_NAME} WHERE client_number = ?
+            ''', (client_number,)) as cursor:
+                result = await cursor.fetchone()
+                return result[0] if result else None
 
     async def check_client_exist(self, client_number: int) -> bool:
         async with aiosqlite.connect(self.database_path) as connection:

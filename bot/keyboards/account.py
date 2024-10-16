@@ -3,7 +3,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 
 
 class Account:
-    def __init__(self):
+    def __init__(self) -> None:
         self.builder = InlineKeyboardBuilder()
 
         self.button_1 = types.InlineKeyboardButton(
@@ -16,13 +16,13 @@ class Account:
             callback_data="shares"
         )
 
-    def back_to_menu(self):
+    def back_to_menu(self) -> None:
         self.builder = InlineKeyboardBuilder()
         self.builder.row(
             self.button_1
         )
 
-    def build_account(self):
+    def build_account(self) -> None:
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_2)
         self.builder.row(self.button_1)
