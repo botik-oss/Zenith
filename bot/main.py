@@ -3,6 +3,7 @@ from aiogram.filters import Command
 from aiogram.types import FSInputFile
 from ZenithBot.bot.handlers.contacts import contacts  # Import the contacts function
 from ZenithBot.bot.handlers.addresses import adresses
+from ZenithBot.bot.handlers.questions import ask_question
 from ZenithBot.bot.handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03
 from aiogram import F
 from ZenithBot.bot.keyboards.menu import menu
@@ -12,8 +13,6 @@ TOKEN = '7859510119:AAEGBXuw1f52n14AI6MDX6vUFG14ol580Vc'
 bot = Bot(token=TOKEN)
 dp = Dispatcher()
 photo_01 = FSInputFile("Черный.jpg")
-
-# Command handler for /start
 
 
 @dp.message(Command("start"))
@@ -58,6 +57,11 @@ async def stocks_menu(callback: types.CallbackQuery):
 @dp.callback_query(F.data == "group")
 async def stocks_menu(callback: types.CallbackQuery):
     await free_bet_03(callback)
+
+@dp.callback_query(F.data == "questions")
+async def ask_your_question(callback: types.CallbackQuery):
+    await ask_question(callback)
+
 
 # Start polling if this script is the main one
 if __name__ == "__main__":

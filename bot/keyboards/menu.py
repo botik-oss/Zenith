@@ -45,12 +45,9 @@ class Menu:
             text="группа с розыгрышами",
             callback_data="group"
         )
-
-    def back_to_menu(self):
+        self.question_buttons = []  # Список для хранения кнопок вопросов def back_to_menu(self):
         self.builder = InlineKeyboardBuilder()
-        self.builder.row(
-            self.button_7
-        )
+        self.builder.row(self.button_7)
 
     def main_menu(self):
         self.builder = InlineKeyboardBuilder()
@@ -61,8 +58,6 @@ class Menu:
         self.builder.row(self.button_5)
         self.builder.row(self.button_6)
 
-    # return self.builder
-
     def event(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_8)
@@ -70,16 +65,22 @@ class Menu:
         self.builder.row(self.button_10)
         self.builder.row(self.button_7)
 
-
-    def new_button(self, text, callback):
+    def back_to_menu(self):
         self.builder = InlineKeyboardBuilder()
-        self.button_1 = types.InlineKeyboardButton(
-            text=text,
-            callback_data=callback
+        self.builder.row(
+            self.button_7
         )
+    def new_button(self, text, callback):
+        new_button = types.InlineKeyboardButton(
+            text=text,
+            callback_data=callback )
+        self.question_buttons.append(new_button)  # Добавляем новую кнопку в список
 
     def question(self):
         self.builder = InlineKeyboardBuilder()
+        for button in self.question_buttons:  # Добавляем все кнопки из question_buttons
+            self.builder.row(button)
+        self.builder.row(self.button_7)  # Добавляем кнопку "главное меню"
 
 
 menu = Menu()
