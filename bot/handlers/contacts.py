@@ -1,8 +1,11 @@
 from aiogram import types
 from aiogram.types import FSInputFile
 
-from ZenithBot.bot.core.constants import contact
-from ZenithBot.bot.keyboards.menu import menu
+from aiogram import types
+from aiogram.types import FSInputFile
+
+from bot.core.constants import contact
+from bot.keyboards.menu import menu
 
 async def contacts(callback: types.CallbackQuery):
     menu.back_to_menu()

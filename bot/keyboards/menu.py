@@ -27,7 +27,7 @@ class Menu:
         )
         self.button_6 = types.InlineKeyboardButton(
             text="Личный кабинет",
-            callback_data="accaunt"
+            callback_data="account"
         )
         self.button_7 = types.InlineKeyboardButton(
             text="главное меню",
@@ -81,6 +81,5 @@ class Menu:
         for button in self.question_buttons:  # Добавляем все кнопки из question_buttons
             self.builder.row(button)
         self.builder.row(self.button_7)  # Добавляем кнопку "главное меню"
-
 
 menu = Menu()

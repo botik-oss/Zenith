@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram.types import FSInputFile
-from ZenithBot.bot.keyboards.menu import menu
-from ZenithBot.bot.core.constants import question
+from bot.keyboards.menu import menu
+from bot.core.constants import question
 
 
 def add_button(text):

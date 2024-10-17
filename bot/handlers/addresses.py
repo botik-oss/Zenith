@@ -1,9 +1,9 @@
 from aiogram import types
+from bot.core.constants import adress
 from aiogram.types import FSInputFile
 
-from ZenithBot.bot.core.constants import adress
-from ZenithBot.bot.keyboards.menu import menu
-
+from bot.core.constants import adress
+from bot.keyboards.menu import menu
 
 
 async def adresses(callback: types.CallbackQuery):
@@ -11,4 +11,5 @@ async def adresses(callback: types.CallbackQuery):
     photo_03 = FSInputFile("Черный.jpg")
 
     await callback.message.answer_photo(photo_03, adress,
-        parse_mode='Markdown', reply_markup=menu.builder.as_markup(resize_keyboard=True))
+                                        parse_mode='Markdown',
+                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))
