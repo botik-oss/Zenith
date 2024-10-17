@@ -4,7 +4,8 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
 from bot.handlers.complaints import accept_to_complaint, make_complaint, send_complaint
 from bot.handlers.fsm import Complaint_menu
-from bot.handlers.questions import ask_question
+from bot.handlers.questions import (ask_question,
+                                    ask_question_1, ask_question_2, ask_question_3, ask_question_4)
 from bot.handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03
 from aiogram import F
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -73,6 +74,21 @@ async def stocks_menu(callback: types.CallbackQuery):
 @dp.callback_query(F.data == "questions")
 async def ask_your_question(callback: types.CallbackQuery):
     await ask_question(callback)
+
+@dp.callback_query(F.data == "question_1")
+async def ask_your_question_1(callback: types.CallbackQuery):
+    await ask_question_1(callback)
+@dp.callback_query(F.data == "question_2")
+async def ask_your_question_2(callback: types.CallbackQuery):
+    await ask_question_2(callback)
+
+@dp.callback_query(F.data == "question_3")
+async def ask_your_question_3(callback: types.CallbackQuery):
+    await ask_question_3(callback)
+
+@dp.callback_query(F.data == "question_4")
+async def ask_your_question_4(callback: types.CallbackQuery):
+    await ask_question_4(callback)
 
 @router.callback_query(F.data == "complaint_1")
 async def complain_menu(callback: types.CallbackQuery, state: FSMContext):

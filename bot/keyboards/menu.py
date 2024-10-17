@@ -1,6 +1,6 @@
 from aiogram import types
 from aiogram.utils.keyboard import InlineKeyboardBuilder
-
+from bot.core.constants import questions
 
 class Menu:
     def __init__(self):
@@ -54,9 +54,37 @@ class Menu:
             text="отмена",
             callback_data="complaint_1"
         )
+        self.button_13 = types.InlineKeyboardButton(
+            text=list(questions)[0],
+            callback_data="question_1"
+        )
+        self.button_14 = types.InlineKeyboardButton(
+            text=list(questions)[1],
+            callback_data="question_2"
+        )
+        self.button_15 = types.InlineKeyboardButton(
+            text=list(questions)[2],
+            callback_data="question_3"
+        )
+        self.button_16 = types.InlineKeyboardButton(
+            text=list(questions)[3],
+            callback_data="question_4"
+        )
 
     def back_to_menu(self):
         self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_7)
+
+    #функция для меню частых вопросв
+    def back_to_menu_1(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_3)
+        self.builder.row(self.button_7)
+
+    #функция для меню акций
+    def back_to_menu_2(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_1)
         self.builder.row(self.button_7)
 
     def main_menu(self):
@@ -81,6 +109,7 @@ class Menu:
             text=text,
             callback_data=callback )
         self.question_buttons.append(new_button)  # Добавляем новую кнопку в список
+
     def complaine_1(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_11)
@@ -92,6 +121,10 @@ class Menu:
 
     def question(self):
         self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_13)
+        self.builder.row(self.button_14)
+        self.builder.row(self.button_15)
+        self.builder.row(self.button_16)
         for button in self.question_buttons:  # Добавляем все кнопки из question_buttons
             self.builder.row(button)
         self.builder.row(self.button_7)  # Добавляем кнопку "главное меню"

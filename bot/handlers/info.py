@@ -21,7 +21,7 @@ async def stocks(callback: types.CallbackQuery):
 
 async def free_bet_01(callback: types.CallbackQuery):
     #photo_04 = FSInputFile("Черный.jpg")
-    menu.back_to_menu()
+    menu.back_to_menu_2()
     await callback.message.answer_photo(photo_04, freebet_birth,
                                         reply_markup=menu.builder.as_markup(resize_keyboard=True)
                                         )
@@ -30,7 +30,7 @@ async def free_bet_01(callback: types.CallbackQuery):
 
 async def free_bet_02(callback: types.CallbackQuery):
     #photo_04 = FSInputFile("Черный.jpg")
-    menu.back_to_menu()
+    menu.back_to_menu_2()
     await callback.message.answer_photo(photo_04, freebet_reg,
                     reply_markup=menu.builder.as_markup(resize_keyboard=True)
     )
