@@ -1,9 +1,6 @@
-from aiogram import types
-from aiogram.types import FSInputFile
 
 from aiogram import types
 from aiogram.types import FSInputFile
-
 from bot.core.constants import contact
 from bot.keyboards.menu import menu
 

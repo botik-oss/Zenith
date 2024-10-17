@@ -1,6 +1,9 @@
-from aiogram import Bot, Dispatcher, types
+from aiogram import Bot, Dispatcher, types, Router
 from aiogram.filters import Command
+from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
+from bot.handlers.complaints import accept_to_complaint, make_complaint, send_complaint
+from bot.handlers.fsm import Complaint_menu
 from bot.handlers.questions import ask_question
 from bot.handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03
 from aiogram import F
@@ -15,9 +18,10 @@ from handlers import account
 TOKEN = config.TOKEN
 bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
-dp.include_router(account.router)
-
 photo_01 = FSInputFile("Черный.jpg")
+router = Router()
+dp.include_router(account.router)
+dp.include_router(router=router)
 
 
 @dp.message(Command("start"))
@@ -69,6 +73,24 @@ async def stocks_menu(callback: types.CallbackQuery):
 @dp.callback_query(F.data == "questions")
 async def ask_your_question(callback: types.CallbackQuery):
     await ask_question(callback)
+
+@router.callback_query(F.data == "complaint_1")
+async def complain_menu(callback: types.CallbackQuery, state: FSMContext):
+    await accept_to_complaint(callback, state)
+
+
+@router.callback_query(Complaint_menu.action)
+async def complaint_menu_1(callback: types.CallbackQuery, state=FSMContext):
+    await accept_to_complaint(callback, state)
+
+@router.callback_query(Complaint_menu.complaint)
+async def complaint_menu_2(callback: types.CallbackQuery, state=FSMContext):
+    await make_complaint(callback, state)
+
+@router.message(Complaint_menu.complaint)
+async def send_complaint_to_admin(message: types.Message, state=FSMContext):
+    await send_complaint(1041359456, message, state)
+
 
 # Start polling if this script is the main one
 if __name__ == "__main__":

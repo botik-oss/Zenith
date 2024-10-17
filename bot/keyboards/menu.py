@@ -23,7 +23,7 @@ class Menu:
         )
         self.button_5 = types.InlineKeyboardButton(
             text="Жалобы",
-            callback_data="complaints"
+            callback_data="complaint_1"
         )
         self.button_6 = types.InlineKeyboardButton(
             text="Личный кабинет",
@@ -46,6 +46,16 @@ class Menu:
             callback_data="group"
         )
         self.question_buttons = []  # Список для хранения кнопок вопросов def back_to_menu(self):
+        self.button_11 = types.InlineKeyboardButton(
+            text="оставить жалобу",
+            callback_data="complaint_2"
+        )
+        self.button_12 = types.InlineKeyboardButton(
+            text="отмена",
+            callback_data="complaint_1"
+        )
+
+    def back_to_menu(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_7)
 
@@ -65,16 +75,20 @@ class Menu:
         self.builder.row(self.button_10)
         self.builder.row(self.button_7)
 
-    def back_to_menu(self):
-        self.builder = InlineKeyboardBuilder()
-        self.builder.row(
-            self.button_7
-        )
+
     def new_button(self, text, callback):
         new_button = types.InlineKeyboardButton(
             text=text,
             callback_data=callback )
         self.question_buttons.append(new_button)  # Добавляем новую кнопку в список
+    def complaine_1(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_11)
+        self.builder.row(self.button_7)
+
+    def complaine_2(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_7)
 
     def question(self):
         self.builder = InlineKeyboardBuilder()
