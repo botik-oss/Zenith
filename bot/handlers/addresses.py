@@ -4,7 +4,6 @@ from bot.core.constants import adress
 from bot.keyboards.menu import menu
 
 
-
 async def adresses(callback: types.CallbackQuery):
     menu.back_to_menu()
     photo_03 = FSInputFile("Черный.jpg")

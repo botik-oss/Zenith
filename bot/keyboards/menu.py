@@ -1,6 +1,7 @@
 from aiogram import types
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from bot.core.constants import questions
+from bot.core.constants import channel_url, group_url
 
 class Menu:
     def __init__(self):
@@ -70,18 +71,30 @@ class Menu:
             text=list(questions)[3],
             callback_data="question_4"
         )
+        self.button_17 = types.InlineKeyboardButton(
+            text="подписаться",
+            url=channel_url
+        )
+        self.button_18 = types.InlineKeyboardButton(
+            text="группа с розыгрышами",
+            url=group_url
+        )
+        self.button_19 = types.InlineKeyboardButton(
+            text="отмена",
+            callback_data="cancel"
+        )
 
     def back_to_menu(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_7)
 
-    #функция для меню частых вопросв
+    # функция для меню частых вопросв
     def back_to_menu_1(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_3)
         self.builder.row(self.button_7)
 
-    #функция для меню акций
+    # функция для меню акций
     def back_to_menu_2(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_1)
@@ -103,12 +116,22 @@ class Menu:
         self.builder.row(self.button_10)
         self.builder.row(self.button_7)
 
-
     def new_button(self, text, callback):
         new_button = types.InlineKeyboardButton(
             text=text,
-            callback_data=callback )
+            callback_data=callback)
         self.question_buttons.append(new_button)  # Добавляем новую кнопку в список
+
+    # функция для меню акций
+    def group(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_18)
+        self.builder.row(self.button_19)
+
+    def channel(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_17)
+        self.builder.row(self.button_19)
 
     def complaine_1(self):
         self.builder = InlineKeyboardBuilder()
@@ -128,5 +151,6 @@ class Menu:
         for button in self.question_buttons:  # Добавляем все кнопки из question_buttons
             self.builder.row(button)
         self.builder.row(self.button_7)  # Добавляем кнопку "главное меню"
+
 
 menu = Menu()
