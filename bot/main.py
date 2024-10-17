@@ -6,7 +6,7 @@ from ZenithBot.bot.handlers.addresses import adresses
 from ZenithBot.bot.handlers.questions import ask_question
 from ZenithBot.bot.handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03
 from aiogram import F
-from ZenithBot.bot.keyboards.menu import menu
+from ZenithBot.bot.keyboards.menu import menu   
 
 # Initialize bot and dispatcher
 TOKEN = '7859510119:AAEGBXuw1f52n14AI6MDX6vUFG14ol580Vc'
