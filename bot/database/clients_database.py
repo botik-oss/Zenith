@@ -2,8 +2,8 @@ import csv
 from typing import Optional
 
 import aiosqlite
-from bot.core import config
-from bot.database.clients_telegram_database import clients_telegram
+from core import config
+from database.clients_telegram_database import clients_telegram
 
 # TODO ВВОД ФАЙЛА ПРИ ОБНОВЛЕНИИ ТАБЛИЦЫ
 

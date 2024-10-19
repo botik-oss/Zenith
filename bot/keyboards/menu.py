@@ -3,6 +3,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from bot.core.constants import questions
 from bot.core.constants import channel_url, group_url
 
+
 class Menu:
     def __init__(self):
         self.builder = InlineKeyboardBuilder()
@@ -83,6 +84,10 @@ class Menu:
             text="отмена",
             callback_data="cancel"
         )
+        self.button_20 = types.InlineKeyboardButton(
+            text="{ АДМИНКА }",
+            callback_data="admin"
+        )
 
     def back_to_menu(self):
         self.builder = InlineKeyboardBuilder()
@@ -108,6 +113,16 @@ class Menu:
         self.builder.row(self.button_4)
         self.builder.row(self.button_5)
         self.builder.row(self.button_6)
+
+    def admin_menu(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_1)
+        self.builder.row(self.button_2)
+        self.builder.row(self.button_3)
+        self.builder.row(self.button_4)
+        self.builder.row(self.button_5)
+        self.builder.row(self.button_6)
+        self.builder.row(self.button_20)
 
     def event(self):
         self.builder = InlineKeyboardBuilder()
