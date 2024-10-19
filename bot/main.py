@@ -4,8 +4,7 @@ from aiogram.types import FSInputFile
 from aiogram import F
 from aiogram.fsm.storage.memory import MemoryStorage
 
-from handlers.complaints import accept_to_complaint, make_complaint, send_complaint
-from handlers.fsm import Complaint_menu
+from handlers.complaints import complaint_menu_1
 from handlers.questions import (ask_question,
                                 ask_question_1, ask_question_2, ask_question_3, ask_question_4)
 from handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03, cancel
@@ -91,23 +90,7 @@ async def ask_your_question_4(callback: types.CallbackQuery):
 
 @router.callback_query(F.data == "complaint_1")
 async def complain_menu(callback: types.CallbackQuery, state: FSMContext):
-    await accept_to_complaint(callback, state)
-
-
-@router.callback_query(Complaint_menu.action)
-async def complaint_menu_1(callback: types.CallbackQuery, state=FSMContext):
-    await accept_to_complaint(callback, state)
-
-
-@router.callback_query(Complaint_menu.complaint)
-async def complaint_menu_2(callback: types.CallbackQuery, state=FSMContext):
-    await make_complaint(callback, state)
-
-
-@router.message(Complaint_menu.complaint)
-async def send_complaint_to_admin(message: types.Message, state=FSMContext):
-    await send_complaint(1041359456, message, state)
-
+    await complaint_menu_1(callback, state)
 
 # Start polling if this script is the main one
 if __name__ == "__main__":
