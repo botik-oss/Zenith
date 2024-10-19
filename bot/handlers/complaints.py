@@ -3,14 +3,16 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
 from core.constants import complaints
 from keyboards.menu import menu
-from handlers.fsm import Complaint_menu
+from fsm.states import Complaint_menu
 
 router = Router()
 TOKEN = '7536990395:AAFpT5VXsx0VuBuqoG5ha7h5pzeBQCIG1SM'
 bot = Bot(token=TOKEN)
+admin_id = "1795780447"
 
 
-async def accept_to_complaint(callback: types.CallbackQuery, state: FSMContext):
+@router.callback_query(Complaint_menu.action)
+async def complaint_menu_1(callback: types.CallbackQuery, state=FSMContext):
     # Установим состояние в Complaint_menu.complaint
     await state.set_state(Complaint_menu.complaint)
     menu.complaine_1()
@@ -21,7 +23,8 @@ async def accept_to_complaint(callback: types.CallbackQuery, state: FSMContext):
                                         reply_markup=menu.builder.as_markup(resize_keyboard=True))
 
 
-async def make_complaint(callback: types.CallbackQuery, state=FSMContext):
+@router.callback_query(Complaint_menu.complaint)
+async def complaint_menu_2(callback: types.CallbackQuery, state=FSMContext):
     menu.complaine_2()
     photo_03 = FSInputFile("Черный.jpg")
     await callback.message.answer_photo(photo_03, complaints[1],
@@ -31,8 +34,8 @@ async def make_complaint(callback: types.CallbackQuery, state=FSMContext):
         await state.set_state(Complaint_menu.action)
 
 
-async def send_complaint(admin_id, message: types.Message, state=FSMContext):
-    print(1)
+@router.message(Complaint_menu.complaint)
+async def send_complaint_to_admin(admin_id, message: types.Message, state=FSMContext):
     mes = "Жалоба: " + message.text
     photo_03 = FSInputFile("Черный.jpg")
     menu.complaine_1()
