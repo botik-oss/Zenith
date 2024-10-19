@@ -11,6 +11,7 @@ from aiogram import F
 from aiogram.fsm.storage.memory import MemoryStorage
 from keyboards.menu import menu
 from handlers.contacts import contacts
+from core.constants import admin_id
 from handlers.addresses import adresses
 from core import config
 from handlers import account
@@ -115,7 +116,7 @@ async def complaint_menu_2(callback: types.CallbackQuery, state=FSMContext):
 
 @router.message(Complaint_menu.complaint)
 async def send_complaint_to_admin(message: types.Message, state=FSMContext):
-    await send_complaint(1041359456, message, state)
+    await send_complaint(admin_id, message, state)
 
 
 # Start polling if this script is the main one

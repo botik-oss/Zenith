@@ -4,9 +4,8 @@ from aiogram.types import FSInputFile
 from bot.core.constants import complaints
 from bot.keyboards.menu import menu
 from bot.handlers.fsm import Complaint_menu
-
+from bot.core.config import TOKEN
 router = Router()
-TOKEN = '7536990395:AAFpT5VXsx0VuBuqoG5ha7h5pzeBQCIG1SM'
 bot = Bot(token=TOKEN)
 
 

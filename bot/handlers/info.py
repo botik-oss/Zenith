@@ -30,8 +30,6 @@ async def free_bet_02(callback: types.CallbackQuery):
 
 async def free_bet_03(callback: types.CallbackQuery):
     user_id = callback.message.chat.id
-    print(callback.message.chat.id)
-    print(user_id)
 
     try:
         # Проверка первого чата
