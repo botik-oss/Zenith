@@ -3,6 +3,7 @@ from aiogram.utils.keyboard import InlineKeyboardBuilder
 from core.constants import questions
 from core.constants import channel_url, group_url
 
+
 class Menu:
     def __init__(self):
         self.builder = InlineKeyboardBuilder()

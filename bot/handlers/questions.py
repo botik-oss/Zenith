@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram.types import FSInputFile
-from bot.keyboards.menu import menu
-from bot.core.constants import question, questions
+from keyboards.menu import menu
+from core.constants import question, questions
 
 photo_02 = FSInputFile("Черный.jpg")
 

@@ -1,35 +1,29 @@
 from aiogram import Bot, Dispatcher, types, Router
-from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
+from aiogram import F
+from aiogram.fsm.storage.memory import MemoryStorage
+
 from handlers.complaints import accept_to_complaint, make_complaint, send_complaint
 from handlers.fsm import Complaint_menu
 from handlers.questions import (ask_question,
-                                    ask_question_1, ask_question_2, ask_question_3, ask_question_4)
+                                ask_question_1, ask_question_2, ask_question_3, ask_question_4)
 from handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03, cancel
-from aiogram import F
-from aiogram.fsm.storage.memory import MemoryStorage
-from keyboards.menu import menu
 from handlers.contacts import contacts
 from handlers.addresses import adresses
 from core import config
 from handlers import account
+from handlers.start import router as start_router
 
 # Initialize bot and dispatcher
 TOKEN = config.TOKEN
 bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
-photo_01 = FSInputFile("Черный.jpg")
 router = Router()
+dp.include_router(start_router)
 dp.include_router(account.router)
 dp.include_router(router=router)
-
-
-@dp.callback_query(F.data == "menu")
-async def return_main_menu(callback: types.CallbackQuery) -> None:
-    menu.main_menu()
-    await callback.message.answer_photo(photo_01, "Выберите опцию:",
-                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))
+photo_01 = FSInputFile("Черный.jpg")
 
 
 # Add a callback handler for the contacts button
@@ -62,9 +56,11 @@ async def stocks_menu(callback: types.CallbackQuery) -> None:
 async def stocks_menu(callback: types.CallbackQuery):
     await free_bet_03(callback)
 
+
 @dp.callback_query(F.data == "cancel")
 async def cancel_menu(callback: types.CallbackQuery):
     await cancel(callback)
+
 
 @dp.callback_query(F.data == "questions")
 async def ask_your_question(callback: types.CallbackQuery):
