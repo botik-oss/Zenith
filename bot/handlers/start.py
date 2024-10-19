@@ -27,4 +27,4 @@ async def return_main_menu(callback: types.CallbackQuery) -> None:
     else:
         menu.main_menu()
     await callback.message.answer_photo(photo_01, "Выберите опцию:",
-                                reply_markup=menu.builder.as_markup(resize_keyboard=True))
+                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))
