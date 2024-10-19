@@ -4,9 +4,8 @@ from aiogram.types import FSInputFile
 from core.constants import complaints
 from keyboards.menu import menu
 from fsm.states import Complaint_menu
-
+from core.config import TOKEN
 router = Router()
-TOKEN = '7536990395:AAFpT5VXsx0VuBuqoG5ha7h5pzeBQCIG1SM'
 bot = Bot(token=TOKEN)
 admin_id = "1795780447"
 

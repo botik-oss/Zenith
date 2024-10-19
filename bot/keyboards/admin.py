@@ -11,6 +11,11 @@ class Admin:
             callback_data="menu"
         )
 
+        self.button_4 = types.InlineKeyboardButton(
+            text="Отмена",
+            callback_data="menu"
+        )
+
         self.button_2 = types.InlineKeyboardButton(
             text="Обновить базу",
             callback_data="database_update"
@@ -27,11 +32,13 @@ class Admin:
         self.builder.row(self.button_3)
         self.builder.row(self.button_1)
 
+    def cancel(self) -> None:
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_4)
+
     def back_to_menu(self) -> None:
         self.builder = InlineKeyboardBuilder()
-        self.builder.row(
-            self.button_1
-        )
+        self.builder.row(self.button_1)
 
 
 admin = Admin()
