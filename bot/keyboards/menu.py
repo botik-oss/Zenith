@@ -46,6 +46,7 @@ class Menu:
             callback_data="group"
         )
 
+
     def back_to_menu(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(
