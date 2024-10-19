@@ -4,7 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1132843a-4f91-459a-9811-366624ac23cc" name="Changes" comment="" />
+    <list default="true" id="1132843a-4f91-459a-9811-366624ac23cc" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../.idea/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/.name" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/Zenith_Bot.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/inspectionProfiles/profiles_settings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../.idea/worked_bot.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/handlers/fsm.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/../.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/constants.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/addresses.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/addresses.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/complaints.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/complaints.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/contacts.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/contacts.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/info.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/info.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/questions.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/questions.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/start.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/keyboards/menu.py" beforeDir="false" afterPath="$PROJECT_DIR$/keyboards/menu.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -37,10 +61,12 @@
     "Python.clients_telegram_database.executor": "Run",
     "Python.config.executor": "Run",
     "Python.main.executor": "Run",
+    "Python.my_sort.executor": "Run",
     "Python.states.executor": "Run",
+    "Python.test_my_sort.executor": "Run",
     "Python.timetable.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "database"
+    "git-widget-placeholder": "Merging database"
   }
 }]]></component>
   <component name="SharedIndexes">

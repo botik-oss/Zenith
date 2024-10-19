@@ -1,11 +1,10 @@
 from aiogram import types
 from aiogram.types import FSInputFile
-
 from core.constants import contact
 from keyboards.menu import menu
 
 
-async def contacts(callback: types.CallbackQuery) -> None:
+async def contacts(callback: types.CallbackQuery):
     menu.back_to_menu()
     photo_02 = FSInputFile("Черный.jpg")
 

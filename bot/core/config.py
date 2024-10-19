@@ -1,5 +1,5 @@
-CLIENTS_DATABASE = "clients.db"  # Путь к бд клиентов
+CLIENTS_DATABASE = "database/clients.db"  # Путь к бд клиентов
 
-ADMINS_DATABASE = 'admins.db'  # Путь к бд админов
+ADMINS_DATABASE = 'database/admins.db'  # Путь к бд админов
 
-TOKEN = '7749968130:AAFjs5xMiI1gBhIvn5C1qNYeEIQjYpABMPM'  # Токен бота
+TOKEN = '7859510119:AAEGBXuw1f52n14AI6MDX6vUFG14ol580Vc'  # Токен бота

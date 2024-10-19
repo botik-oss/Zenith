@@ -1,7 +1,5 @@
 from aiogram import types
-from core.constants import adress
 from aiogram.types import FSInputFile
-
 from core.constants import adress
 from keyboards.menu import menu
 

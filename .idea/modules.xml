@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+<<<<<<< HEAD
+      <module fileurl="file://$PROJECT_DIR$/.idea/Zenith_Bot.iml" filepath="$PROJECT_DIR$/.idea/Zenith_Bot.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/worked_bot.iml" filepath="$PROJECT_DIR$/.idea/worked_bot.iml" />
+>>>>>>> 1050f434050765903df81c31191cb6a63dde5a6f
+    </modules>
+  </component>
+</project>
