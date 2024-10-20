@@ -9,10 +9,11 @@ from handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03, cancel
 from handlers.contacts import contacts
 from core.constants import admin_id
 from handlers.addresses import adresses
-from handlers import account
-from core import config
 from aiogram import F
+from core import config
+from handlers.account import router as account_router
 from handlers.start import router as start_router
+from bot.handlers.mailing import mailing
 
 # Initialize bot and dispatcher
 TOKEN = config.TOKEN
@@ -20,7 +21,7 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 router = Router()
 dp.include_router(start_router)
-dp.include_router(account.router)
+dp.include_router(account_router)
 dp.include_router(router=router)
 photo_01 = FSInputFile("Черный.jpg")
 

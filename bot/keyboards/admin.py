@@ -40,6 +40,11 @@ class Admin:
             text="отмена",
             callback_data="admin"
         )
+    def build_admin(self) -> None:
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_2)
+        self.builder.row(self.button_3)
+        self.builder.row(self.button_1)
 
     def back_to_menu(self) -> None:
         self.builder = InlineKeyboardBuilder()
@@ -55,3 +60,5 @@ class Admin:
         self.builder.row(self.button_7)
 
 account = Admin()
+
+admin = Admin()
