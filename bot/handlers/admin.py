@@ -10,14 +10,13 @@ from database.clients_database import clients
 from keyboards.admin import admin
 
 router = Router()
-photo_01 = FSInputFile("Черный.jpg")
 bot = Bot(token=TOKEN)
 
 
 @router.callback_query(F.data == "admin")
 async def admin_menu(callback: types.CallbackQuery) -> None:
     admin.build_admin()
-    await callback.message.answer_photo(photo_01, "Админка",
+    await callback.message.answer("Админка",
                                         reply_markup=admin.builder.as_markup(resize_keyboard=True))
 
 
