@@ -11,7 +11,6 @@ from core import config
 from handlers import account, complaints
 from handlers.start import router as start_router
 
-# Initialize bot and dispatcher
 TOKEN = config.TOKEN
 bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
