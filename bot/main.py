@@ -1,5 +1,4 @@
 from aiogram import Bot, Dispatcher, types, Router
-from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
 from aiogram import F
 from aiogram.fsm.storage.memory import MemoryStorage
@@ -11,7 +10,7 @@ from handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03, cancel
 from handlers.contacts import contacts
 from handlers.addresses import adresses
 from core import config
-from handlers import account
+from handlers import account, complaints
 from handlers.start import router as start_router
 from fsm.states import Complaint_menu
 
@@ -21,6 +20,7 @@ bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 router = Router()
 dp.include_router(start_router)
+dp.include_router(complaints.router)
 dp.include_router(account.router)
 dp.include_router(router=router)
 photo_01 = FSInputFile("Черный.jpg")
@@ -85,11 +85,6 @@ async def ask_your_question_3(callback: types.CallbackQuery):
 @dp.callback_query(F.data == "question_4")
 async def ask_your_question_4(callback: types.CallbackQuery):
     await ask_question_4(callback)
-
-
-@router.callback_query(F.data == "complaint_1")
-async def complain_menu(callback: types.CallbackQuery, state: FSMContext):
-    await complaint_menu_1(callback, state)
 
 # Start polling if this script is the main one
 if __name__ == "__main__":

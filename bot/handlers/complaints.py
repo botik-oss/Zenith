@@ -1,21 +1,22 @@
-from aiogram import types, Router, Bot
 from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
 from core.constants import complaints
 from keyboards.menu import menu
 from fsm.states import Complaint_menu
+from core.config import MAIN_ADMIN_ID
+from core import config
+from aiogram import types, Router, F, Bot
+
+TOKEN = config.TOKEN
+bot = Bot(token=TOKEN)
 
 router = Router()
-TOKEN = '7536990395:AAFpT5VXsx0VuBuqoG5ha7h5pzeBQCIG1SM'
-bot = Bot(token=TOKEN)
-admin_id = "1795780447"
+admin_id = MAIN_ADMIN_ID
 
 
-@router.callback_query(Complaint_menu.action)
-async def complaint_menu_1(callback: types.CallbackQuery, state=FSMContext):
-    # Установим состояние в Complaint_menu.complaint
-    await state.set_state(Complaint_menu.complaint)
-    menu.complaine_1()
+@router.callback_query(F.data == "complaint_1")
+async def complaint_menu_1(callback: types.CallbackQuery):
+    menu.complaint_1()
     # Отправим меню menu.complaine_1()
     photo_03 = FSInputFile("Черный.jpg")
     await callback.message.answer_photo(photo_03, complaints[0],
@@ -23,25 +24,22 @@ async def complaint_menu_1(callback: types.CallbackQuery, state=FSMContext):
                                         reply_markup=menu.builder.as_markup(resize_keyboard=True))
 
 
-@router.callback_query(Complaint_menu.complaint)
+@router.callback_query(F.data == "complaint_2")
 async def complaint_menu_2(callback: types.CallbackQuery, state=FSMContext):
-    menu.complaine_2()
+    menu.complaint_2()
     photo_03 = FSInputFile("Черный.jpg")
     await callback.message.answer_photo(photo_03, complaints[1],
                                         parse_mode='Markdown',
                                         reply_markup=menu.builder.as_markup(resize_keyboard=True))
-    if callback.data == "complaint_1":
-        await state.set_state(Complaint_menu.action)
+    await state.set_state(Complaint_menu.complaint)
 
 
 @router.message(Complaint_menu.complaint)
-async def send_complaint_to_admin(admin_id, message: types.Message, state=FSMContext):
-    mes = "Жалоба: " + message.text
+async def send_complaint_to_admin(message: types.Message, state=FSMContext):
     photo_03 = FSInputFile("Черный.jpg")
-    menu.complaine_1()
+    mes = "Жалоба: " + message.text
     await message.answer("Жалоба была отправлена!")
     await bot.send_message(admin_id, mes)
-    await state.set_state(Complaint_menu.action)
     await message.answer_photo(photo_03, complaints[1],
-                               parse_mode='Markdown',
-                               reply_markup=menu.builder.as_markup(resize_keyboard=True))
+                                        parse_mode='Markdown',
+                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))

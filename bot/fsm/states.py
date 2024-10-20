@@ -5,5 +5,4 @@ class Account(StatesGroup):
     registration = State()
 
 class Complaint_menu(StatesGroup):
-    action = State()
     complaint = State()
