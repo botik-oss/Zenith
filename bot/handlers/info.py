@@ -7,7 +7,7 @@ from bot.keyboards.menu import menu
 
 TOKEN = config.TOKEN  # Используйте токен из конфигурации
 bot = Bot(token=TOKEN)
-photo_04 = FSInputFile("Черный.jpg")
+photo_04 = FSInputFile("static/stocks_menu.png")
 
 
 async def stocks(callback: types.CallbackQuery):

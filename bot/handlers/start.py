@@ -4,11 +4,12 @@ from aiogram.types import FSInputFile
 from aiogram import F
 from bot.fsm.states import Complaint_menu, Account
 from aiogram.fsm.context import FSMContext
+
 from bot.keyboards.menu import menu
 from bot.database.admins_database import admins
 
 router = Router()
-photo_01 = FSInputFile("Черный.jpg")
+photo_01 = FSInputFile("static/main_menu.png")
 
 
 @router.message(Command("start"))

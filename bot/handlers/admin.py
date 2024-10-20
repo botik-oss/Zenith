@@ -2,7 +2,7 @@ from aiogram import types, Router, F
 from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
 
-from keyboards.admin import admin
+from bot.keyboards.admin import admin
 
 router = Router()
 photo_01 = FSInputFile("Черный.jpg")

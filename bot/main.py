@@ -2,8 +2,6 @@ from aiogram import Bot, Dispatcher, types, Router
 from aiogram.types import FSInputFile
 from aiogram import F
 from aiogram.fsm.storage.memory import MemoryStorage
-
-from handlers.complaints import complaint_menu_1
 from handlers.questions import (ask_question,
                                 ask_question_1, ask_question_2, ask_question_3, ask_question_4)
 from handlers.info import stocks, free_bet_01, free_bet_02, free_bet_03, cancel
@@ -12,7 +10,6 @@ from handlers.addresses import adresses
 from core import config
 from handlers import account, complaints
 from handlers.start import router as start_router
-from fsm.states import Complaint_menu
 
 # Initialize bot and dispatcher
 TOKEN = config.TOKEN
@@ -23,7 +20,7 @@ dp.include_router(start_router)
 dp.include_router(complaints.router)
 dp.include_router(account.router)
 dp.include_router(router=router)
-photo_01 = FSInputFile("Черный.jpg")
+photo_01 = FSInputFile("static/main_menu.png")
 
 
 # Add a callback handler for the contacts button

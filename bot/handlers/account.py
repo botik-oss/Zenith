@@ -1,10 +1,10 @@
 from aiogram import types, Router, F
 from aiogram.fsm.context import FSMContext
 
-from database.clients_database import clients
-from database.clients_telegram_database import clients_telegram
-from keyboards.account import account as acc
-from fsm.states import Account
+from bot.database.clients_database import clients
+from bot.database.clients_telegram_database import clients_telegram
+from bot.keyboards.account import account as acc
+from bot.fsm.states import Account
 
 router = Router()
 
