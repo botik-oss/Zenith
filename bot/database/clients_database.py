@@ -1,12 +1,10 @@
 import csv
 import io
 from typing import Optional
-
 import aiosqlite
+
 from core import config
 from database.clients_telegram_database import clients_telegram
-
-# TODO ВВОД ФАЙЛА ПРИ ОБНОВЛЕНИИ ТАБЛИЦЫ
 
 CLIENTS_DATABASE = config.CLIENTS_DATABASE
 TABLE_NAME = "clients"
