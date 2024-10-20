@@ -5,9 +5,9 @@ from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
 
 from core.config import TOKEN
-from keyboards.admin import admin
 from fsm.states import Admin
 from database.clients_database import clients
+from keyboards.admin import admin
 
 router = Router()
 photo_01 = FSInputFile("Черный.jpg")
@@ -56,4 +56,4 @@ async def finish_updating(message: types.Message, state: FSMContext) -> None:
     admin.back_to_menu()
     await state.clear()
     await message.answer("База обновлена",
-                          reply_markup=admin.builder.as_markup(resize_keyboard=True))
+                         reply_markup=admin.builder.as_markup(resize_keyboard=True))

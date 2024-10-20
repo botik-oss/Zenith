@@ -11,5 +11,4 @@ class Admin(StatesGroup):
 
 
 class Complaint_menu(StatesGroup):
-    action = State()
     complaint = State()
