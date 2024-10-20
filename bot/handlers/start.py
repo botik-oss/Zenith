@@ -2,7 +2,8 @@ from aiogram import types, Router
 from aiogram.filters import Command
 from aiogram.types import FSInputFile
 from aiogram import F
-
+from bot.fsm.states import Complaint_menu, Account
+from aiogram.fsm.context import FSMContext
 from bot.keyboards.menu import menu
 from bot.database.admins_database import admins
 
@@ -11,7 +12,8 @@ photo_01 = FSInputFile("Черный.jpg")
 
 
 @router.message(Command("start"))
-async def cmd_start(message: types.Message) -> None:
+async def cmd_start(message: types.Message, state = FSMContext) -> None:
+    await state.clear()
     if await admins.check_admin_exist(message.from_user.id):
         menu.admin_menu()
     else:
@@ -21,7 +23,8 @@ async def cmd_start(message: types.Message) -> None:
 
 
 @router.callback_query(F.data == "menu")
-async def return_main_menu(callback: types.CallbackQuery) -> None:
+async def return_main_menu(callback: types.CallbackQuery, state = FSMContext) -> None:
+    await state.clear()
     if await admins.check_admin_exist(callback.from_user.id):
         menu.admin_menu()
     else:

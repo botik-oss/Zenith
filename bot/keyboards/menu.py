@@ -148,12 +148,12 @@ class Menu:
         self.builder.row(self.button_17)
         self.builder.row(self.button_19)
 
-    def complaine_1(self):
+    def complaint_1(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_11)
         self.builder.row(self.button_7)
 
-    def complaine_2(self):
+    def complaint_2(self):
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_7)
 
