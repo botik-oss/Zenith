@@ -22,13 +22,21 @@ async def log_account(callback: types.CallbackQuery, state: FSMContext) -> None:
                                             reply_markup=acc.builder.as_markup(resize_keyboard=True))
         await state.set_state(Account.registration)
     else:
-        data = await clients.get_user_data_by_id(user_id)
-        acc.build_account()
-        await callback.message.answer(f"Личный кабинет\n\n"
-                                      f"Имя: {data["name"]}\n"
-                                      f"Пол: {"Мужской" if data["gender"] == "М" else "Женский"}\n"
-                                      f"Дата рождения: {', '.join(data["date_of_birth"].split("/"))}",
-                                      reply_markup=acc.builder.as_markup(resize_keyboard=True))
+        try:
+            data = await clients.get_user_data_by_id(user_id)
+            if data is None:
+                raise ValueError
+            acc.build_account()
+            await callback.message.answer(f"Личный кабинет\n\n"
+                                          f"Имя: {data["name"]}\n"
+                                          f"Пол: {"Мужской" if data["gender"] == "М" else "Женский"}\n"
+                                          f"Дата рождения: {', '.join(data["date_of_birth"].split("/"))}",
+                                          reply_markup=acc.builder.as_markup(resize_keyboard=True))
+        except ValueError:
+            acc.back_to_menu()
+            await callback.message.answer_photo(photo_09, "Ошибка при обработке пользовательских данных",
+                                                reply_markup=acc.builder.as_markup(resize_keyboard=True))
+
 
 
 @router.message(Account.registration)
