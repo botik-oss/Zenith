@@ -24,7 +24,7 @@ class Account:
 
     def build_account(self) -> None:
         self.builder = InlineKeyboardBuilder()
-        self.builder.row(self.button_2)
+        #  self.builder.row(self.button_2) / Пока не используются персональные акции
         self.builder.row(self.button_1)
 
 

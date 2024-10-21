@@ -1,3 +1,5 @@
+from typing import Optional
+
 import aiosqlite
 
 from core import config
@@ -37,6 +39,14 @@ class ClientsTelegramDatabase:
         await cursor.execute(f'''
                 DELETE FROM {TABLE_NAME} WHERE client_number = ?
             ''', (client_number,))
+
+    async def get_id_by_number(self, client_number: int) -> Optional[int]:
+        async with aiosqlite.connect(self.database_path) as connection:
+            async with connection.execute(f'''
+            SELECT telegram_id FROM {TABLE_NAME} WHERE client_number = ?
+            ''', (client_number,)) as cursor:
+                result = await cursor.fetchone()
+                return result[0] if result else None
 
     async def check_client_exist_by_number(self, client_number: int) -> bool:
         async with aiosqlite.connect(self.database_path) as connection:

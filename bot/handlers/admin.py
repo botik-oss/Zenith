@@ -2,7 +2,6 @@ import io
 
 from aiogram import types, Router, F, Bot
 from aiogram.fsm.context import FSMContext
-from aiogram.types import FSInputFile
 
 from core.config import TOKEN
 from fsm.states import Admin
@@ -17,7 +16,7 @@ bot = Bot(token=TOKEN)
 async def admin_menu(callback: types.CallbackQuery) -> None:
     admin.build_admin()
     await callback.message.answer("Админка",
-                                        reply_markup=admin.builder.as_markup(resize_keyboard=True))
+                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
 
 
 @router.callback_query(F.data == "database_update")

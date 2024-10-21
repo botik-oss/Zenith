@@ -57,13 +57,18 @@ class ClientsDatabase:
         except Exception as e:
             raise Exception(f"Ошибка при обновлении базы данных: {e}")
 
-    async def get_date_birth(self, client_number: int) -> Optional[str]:
+    async def get_user_data_by_id(self, telegram_id: int) -> Optional[dict[str: str, ]]:
         async with aiosqlite.connect(self.database_path) as connection:
             async with connection.execute(f'''
-            SELECT date_of_birth FROM {TABLE_NAME} WHERE client_number = ?
-            ''', (client_number,)) as cursor:
-                result = await cursor.fetchone()
-                return result[0] if result else None
+            SELECT t.name, t.gender, t.date_of_birth
+            FROM {TABLE_NAME} t
+            JOIN clients_telegram c
+            ON t.client_number = c.client_number
+            WHERE c.telegram_id = ?
+            ''', (telegram_id,)) as cursor:
+                key_list = ["name", "gender", "date_of_birth"]
+                result = {key: value for key, value in zip(key_list, await cursor.fetchone())}
+                return result if result else None
 
     async def check_client_exist(self, client_number: int) -> bool:
         async with aiosqlite.connect(self.database_path) as connection:

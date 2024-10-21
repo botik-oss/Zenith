@@ -22,8 +22,12 @@ async def log_account(callback: types.CallbackQuery, state: FSMContext) -> None:
                                             reply_markup=acc.builder.as_markup(resize_keyboard=True))
         await state.set_state(Account.registration)
     else:
+        data = await clients.get_user_data_by_id(user_id)
         acc.build_account()
-        await callback.message.answer("Личный кабинет",
+        await callback.message.answer(f"Личный кабинет\n\n"
+                                      f"Имя: {data["name"]}\n"
+                                      f"Пол: {"Мужской" if data["gender"] == "М" else "Женский"}\n"
+                                      f"Дата рождения: {', '.join(data["date_of_birth"].split("/"))}",
                                       reply_markup=acc.builder.as_markup(resize_keyboard=True))
 
 
@@ -37,8 +41,8 @@ async def registrate_account(message: types.Message, state: FSMContext) -> None:
                              reply_markup=acc.builder.as_markup(resize_keyboard=True))
     else:
         if await clients.check_client_exist(number) and not (
-        await clients_telegram.check_client_exist_by_number(number)):
-            user_id = message.from_userttttid
+                await clients_telegram.check_client_exist_by_number(number)):
+            user_id = message.from_user.id
             user_username = message.from_user.username
             await clients_telegram.add_client(int(number), user_id, user_username)
             await message.answer_photo(photo_09, "Вы успешно зарегестрированы",
