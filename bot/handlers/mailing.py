@@ -1,11 +1,14 @@
 from aiogram.fsm.context import FSMContext
-from aiogram.types import FSInputFile
+
+from aiogram import types, Router, F, Bot
+
+from core.config import TOKEN
 from keyboards.admin import admin
 from fsm.states import Admin
-from aiogram import types, Router, F
+from database.clients_database import clients
 
 router = Router()
-
+bot = Bot(token=TOKEN)
 
 @router.callback_query(F.data == "send_birth_mailing")
 async def send_birth_mailing_text(callback: types.CallbackQuery, state: FSMContext):
@@ -47,4 +50,20 @@ async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext
 
     admin.sending_mailing_menu()
     await callback.message.answer(text=t,
+                                  Фreply_markup=admin.builder.as_markup(resize_keyboard=True))
+
+
+@router.callback_query(F.data == "send_post")
+async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    t = data.get("text", "")  # Получаем текст, если он есть
+    id_list = clients.get_clients_number_with_birthday()
+    for id in id_list:
+        await bot.send_message(chat_id=id, text=t)
+
+    admin.back_to_menu()
+    await state.clear()
+    await callback.message.answer("Рассылка произведена",
                                   reply_markup=admin.builder.as_markup(resize_keyboard=True))
+
+

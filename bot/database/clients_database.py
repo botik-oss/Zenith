@@ -1,11 +1,13 @@
 import csv
 import io
+from datetime import datetime
+from time import strftime
 from typing import Optional
 import aiosqlite
 
 from core import config
 from database.clients_telegram_database import clients_telegram
-
+from database.clients_telegram_database import TABLE_NAME as TELEGRAM_TABLE_NAME
 CLIENTS_DATABASE = config.CLIENTS_DATABASE
 TABLE_NAME = "clients"
 
@@ -56,6 +58,18 @@ class ClientsDatabase:
 
         except Exception as e:
             raise Exception(f"Ошибка при обновлении базы данных: {e}")
+
+    async def get_clients_number_with_birthday(self):
+        today = datetime.now().strftime('%d/%m')
+
+        async with aiosqlite.connect(self.database_path) as connection:
+            async with connection.cursor() as cursor:
+                await cursor.execute(f"""
+                    SELECT {TABLE_NAME}.id 
+                    FROM {TABLE_NAME}
+                    JOIN {TELEGRAM_TABLE_NAME} ON {TABLE_NAME}.id = {TELEGRAM_TABLE_NAME}.client_id
+                    WHERE SUBSTR({TABLE_NAME}.date_of_birth, 1, 5) = ?
+                """, (today,))
 
     async def get_user_data_by_id(self, telegram_id: int) -> Optional[dict[str: str, ]]:
         async with aiosqlite.connect(self.database_path) as connection:
