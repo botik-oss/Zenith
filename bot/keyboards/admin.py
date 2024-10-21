@@ -57,8 +57,8 @@ class Admin:
 
     def mailing(self):
         self.builder = InlineKeyboardBuilder()
-        self.builder.row(self.button_4)
         self.builder.row(self.button_5)
+        self.builder.row(self.button_4)
         self.builder.row(self.button_6)
         self.builder.row(self.button_7)
 
