@@ -11,7 +11,7 @@ from core import config
 from handlers import account, complaints
 from handlers.start import router as start_router
 from handlers.admin import router as admin_router
-
+from handlers.mailing import router as mailing_router
 
 TOKEN = config.TOKEN
 bot = Bot(token=TOKEN)
@@ -22,6 +22,7 @@ dp.include_router(admin_router)
 dp.include_router(complaints.router)
 dp.include_router(account.router)
 dp.include_router(router=router)
+dp.include_router(mailing_router)
 photo_01 = FSInputFile("static/main_menu.png")
 
 
@@ -84,6 +85,7 @@ async def ask_your_question_3(callback: types.CallbackQuery):
 @dp.callback_query(F.data == "question_4")
 async def ask_your_question_4(callback: types.CallbackQuery):
     await ask_question_4(callback)
+
 
 # Start polling if this script is the main one
 if __name__ == "__main__":

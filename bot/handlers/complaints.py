@@ -41,5 +41,5 @@ async def send_complaint_to_admin(message: types.Message, state=FSMContext):
     await message.answer("Жалоба была отправлена!")
     await bot.send_message(admin_id, mes)
     await message.answer_photo(photo_08, complaints[1],
-                                        parse_mode='Markdown',
-                                        reply_markup=menu.builder.as_markup(resize_keyboard=True))
+                               parse_mode='Markdown',
+                               reply_markup=menu.builder.as_markup(resize_keyboard=True))

@@ -1,5 +1,4 @@
 import io
-
 from aiogram import types, Router, F, Bot
 from aiogram.fsm.context import FSMContext
 
@@ -16,6 +15,13 @@ bot = Bot(token=TOKEN)
 async def admin_menu(callback: types.CallbackQuery) -> None:
     admin.build_admin()
     await callback.message.answer("Админка",
+                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
+
+
+@router.callback_query(F.data == "mailing")
+async def mailing_menu(callback: types.CallbackQuery) -> None:
+    admin.mailing()
+    await callback.message.answer("виды рассылок",
                                   reply_markup=admin.builder.as_markup(resize_keyboard=True))
 
 

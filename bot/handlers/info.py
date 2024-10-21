@@ -1,7 +1,7 @@
 from aiogram import types, Bot
 from aiogram.types import FSInputFile
 from core.constants import (freebet_birth,
-                                freebet_reg, freebet_link_discription01, freebet_link_discription02)
+                            freebet_reg, freebet_link_discription01, freebet_link_discription02)
 from core import config
 from keyboards.menu import menu
 
