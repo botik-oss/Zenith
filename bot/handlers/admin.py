@@ -1,9 +1,8 @@
 import io
-
 from aiogram import types, Router, F, Bot
 from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
-
+from bot.handlers.mailing import send_birth_mailing_text
 from bot.core.config import TOKEN
 from bot.fsm.states import Admin
 from bot.database.clients_database import clients
@@ -24,7 +23,6 @@ async def mailing_menu(callback: types.CallbackQuery) -> None:
     admin.mailing()
     await callback.message.answer("виды рассылок",
                                         reply_markup=admin.builder.as_markup(resize_keyboard=True))
-
 
 @router.callback_query(F.data == "database_update")
 async def update_database(callback: types.CallbackQuery, state: FSMContext) -> None:

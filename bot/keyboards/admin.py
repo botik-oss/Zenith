@@ -23,7 +23,7 @@ class Admin:
 
         self.button_4 = types.InlineKeyboardButton(
             text="рассылка по именинникам",
-            callback_data="birth_mailing"
+            callback_data="send_birth_mailing"
         )
 
         self.button_5 = types.InlineKeyboardButton(
@@ -39,6 +39,16 @@ class Admin:
         self.button_7 = types.InlineKeyboardButton(
             text="отмена",
             callback_data="admin"
+        )
+
+        self.button_8 = types.InlineKeyboardButton(
+            text="без фото",
+            callback_data="without_photo"
+        )
+
+        self.button_9 = types.InlineKeyboardButton(
+            text="Разослать всем именинникам",
+            callback_data="send_post"
         )
 
     def build_admin(self) -> None:
@@ -62,6 +72,15 @@ class Admin:
         self.builder.row(self.button_6)
         self.builder.row(self.button_7)
 
+    def mailing_photo(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_8)
+        self.builder.row(self.button_7)
+
+    def sending_mailing_menu(self):
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_9)
+        self.builder.row(self.button_7)
 
 account = Admin()
 

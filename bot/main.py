@@ -11,6 +11,8 @@ from core import config
 from handlers import account, complaints
 from handlers.start import router as start_router
 from handlers.admin import router as admin_router
+from handlers.mailing import router as mailing_router
+
 
 
 TOKEN = config.TOKEN
@@ -22,6 +24,7 @@ dp.include_router(admin_router)
 dp.include_router(complaints.router)
 dp.include_router(account.router)
 dp.include_router(router=router)
+dp.include_router(mailing_router)
 photo_01 = FSInputFile("static/main_menu.png")
 
 
