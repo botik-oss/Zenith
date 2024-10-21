@@ -10,7 +10,7 @@ class Admin(StatesGroup):
     successful_update = State()
     mailing = State()
     mailing_photo = State()
-    sending_mailing = State()
+    sending_mailing_with_photo = State()
 
 
 class Complaint_menu(StatesGroup):

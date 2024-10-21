@@ -18,7 +18,6 @@ async def send_birth_mailing_text(callback: types.CallbackQuery, state: FSMConte
 @router.message(Admin.mailing)
 async def get_mailing_text(message: types.Message, state: FSMContext):
     text = message.text
-    print(text)
     admin.mailing_photo()
     await message.answer("Отправь фото, которое прикрепишь к посту",
                          reply_markup=admin.builder.as_markup(resize_keyboard=True))
@@ -28,7 +27,6 @@ async def get_mailing_text(message: types.Message, state: FSMContext):
 
 @router.message(Admin.mailing_photo)
 async def get_birth_mailing_photo(message: types.Message, state: FSMContext):
-    admin.sending_mailing_menu()
     # Получаем последнее фото из сообщения
     photo = message.photo[-1]  # Берем самое высокое разрешение # Загружаем фото
     photo_file = await message.bot.download(file=photo.file_id)
@@ -37,24 +35,16 @@ async def get_birth_mailing_photo(message: types.Message, state: FSMContext):
     data = await state.get_data()
     text = data.get("text", "")  # Получаем текст, если он есть
 
+    admin.sending_mailing_menu()
     await message.answer_photo(photo=photo.file_id, caption=text,
                                reply_markup=admin.builder.as_markup(resize_keyboard=True))
-    # Устанавливаем новое состояние
-    await state.set_state(Admin.sending_mailing)
 
 
-@router.callback_query(Admin.mailing_photo)
-async def send_birth_mailing_photo(callback: types.CallbackQuery, state=FSMContext):
-    photo = callback.message.photo
-    admin.mailing_photo()
-    await callback.message.answer("Отправь фото, которое прикрепишь к посту",
-                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
-    await state.set_state(Admin.sending_mailing)
+@router.callback_query(F.data == "without_photo")
+async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
+    data = await state.get_data()
+    t = data.get("text", "")  # Получаем текст, если он есть
 
-
-@router.callback_query(Admin.mailing_photo)
-async def sending_mailing(callback: types.CallbackQuery, state: FSMContext, photo, text):
     admin.sending_mailing_menu()
-    await callback.message.answer_photo(photo, text,
-                                        parse_mode='Markdown',
-                                        reply_markup=admin.builder.as_markup(resize_keyboard=True))
+    await callback.message.answer(text=t,
+                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
