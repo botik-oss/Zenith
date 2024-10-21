@@ -10,12 +10,15 @@ from handlers.addresses import adresses
 from core import config
 from handlers import account, complaints
 from handlers.start import router as start_router
+from handlers.admin import router as admin_router
+
 
 TOKEN = config.TOKEN
 bot = Bot(token=TOKEN)
 dp = Dispatcher(storage=MemoryStorage())
 router = Router()
 dp.include_router(start_router)
+dp.include_router(admin_router)
 dp.include_router(complaints.router)
 dp.include_router(account.router)
 dp.include_router(router=router)

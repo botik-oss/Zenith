@@ -6,19 +6,31 @@
   <component name="ChangeListManager">
     <list default="true" id="1132843a-4f91-459a-9811-366624ac23cc" name="Changes" comment="">
 <<<<<<< HEAD
+=======
+<<<<<<< HEAD
       <change afterPath="$PROJECT_DIR$/keyboards/admin.py" afterDir="false" />
+>>>>>>> 10b804d913aa7ebadfaebc4706d6e7494938949c
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+<<<<<<< HEAD
       <change beforePath="$PROJECT_DIR$/core/constants.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/constants.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/123.py" beforeDir="false" afterPath="$PROJECT_DIR$/database/123.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/database/admins.db" beforeDir="false" afterPath="$PROJECT_DIR$/database/admins.db" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/admin.py" afterDir="false" />
+=======
+<<<<<<< HEAD
+      <change beforePath="$PROJECT_DIR$/core/config.py" beforeDir="false" afterPath="$PROJECT_DIR$/core/config.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/fsm/states.py" beforeDir="false" afterPath="$PROJECT_DIR$/fsm/states.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/complaints.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/complaints.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handlers/fsm.py" beforeDir="false" />
 =======
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/fsm/states.py" beforeDir="false" afterPath="$PROJECT_DIR$/fsm/states.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handlers/complaints.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/complaints.py" afterDir="false" />
 >>>>>>> 48699d86cc19c654b4f195ecb35b6d394cb4f6e7
       <change beforePath="$PROJECT_DIR$/handlers/start.py" beforeDir="false" afterPath="$PROJECT_DIR$/handlers/start.py" afterDir="false" />
+>>>>>>> 10b804d913aa7ebadfaebc4706d6e7494938949c
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+>>>>>>> origin/stul
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,6 +55,10 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 10b804d913aa7ebadfaebc4706d6e7494938949c
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;Python.123.executor&quot;: &quot;Run&quot;,
@@ -57,9 +73,32 @@
     &quot;Python.test_my_sort.executor&quot;: &quot;Run&quot;,
     &quot;Python.timetable.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+<<<<<<< HEAD
+    &quot;git-widget-placeholder&quot;: &quot;database&quot;
+=======
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Python.123.executor": "Run",
+    "Python.account.executor": "Run",
+    "Python.admins_database.executor": "Run",
+    "Python.clients_database.executor": "Run",
+    "Python.clients_telegram_database.executor": "Run",
+    "Python.config.executor": "Run",
+    "Python.main.executor": "Run",
+    "Python.my_sort.executor": "Run",
+    "Python.states.executor": "Run",
+    "Python.test_my_sort.executor": "Run",
+    "Python.timetable.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "stul",
+    "ignore.virus.scanning.warn.message": "true",
+    "settings.editor.selected.configurable": "com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable"
+>>>>>>> origin/stul
+=======
     &quot;git-widget-placeholder&quot;: &quot;stul&quot;,
     &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
     &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable&quot;
+>>>>>>> 10b804d913aa7ebadfaebc4706d6e7494938949c
   }
 }</component>
   <component name="SharedIndexes">

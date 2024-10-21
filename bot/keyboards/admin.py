@@ -40,17 +40,20 @@ class Admin:
             text="отмена",
             callback_data="admin"
         )
+
     def build_admin(self) -> None:
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_2)
         self.builder.row(self.button_3)
         self.builder.row(self.button_1)
 
+    def cancel(self) -> None:
+        self.builder = InlineKeyboardBuilder()
+        self.builder.row(self.button_7)
+
     def back_to_menu(self) -> None:
         self.builder = InlineKeyboardBuilder()
-        self.builder.row(
-            self.button_1
-        )
+        self.builder.row(self.button_1)
 
     def mailing(self):
         self.builder = InlineKeyboardBuilder()
@@ -58,6 +61,7 @@ class Admin:
         self.builder.row(self.button_5)
         self.builder.row(self.button_6)
         self.builder.row(self.button_7)
+
 
 account = Admin()
 

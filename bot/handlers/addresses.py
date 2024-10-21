@@ -1,7 +1,7 @@
 from aiogram import types
 from aiogram.types import FSInputFile
-from bot.core.constants import adress
-from bot.keyboards.menu import menu
+from core.constants import adress
+from keyboards.menu import menu
 
 
 async def adresses(callback: types.CallbackQuery):

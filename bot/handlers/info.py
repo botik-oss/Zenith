@@ -1,9 +1,9 @@
 from aiogram import types, Bot
 from aiogram.types import FSInputFile
-from bot.core.constants import (freebet_birth,
+from core.constants import (freebet_birth,
                                 freebet_reg, freebet_link_discription01, freebet_link_discription02)
-from bot.core import config
-from bot.keyboards.menu import menu
+from core import config
+from keyboards.menu import menu
 
 TOKEN = config.TOKEN  # Используйте токен из конфигурации
 bot = Bot(token=TOKEN)

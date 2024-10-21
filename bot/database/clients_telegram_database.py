@@ -1,6 +1,6 @@
 import aiosqlite
 
-from core import config
+from bot.core import config
 
 CLIENTS_DATABASE = config.CLIENTS_DATABASE
 TABLE_NAME = "clients_telegram"
