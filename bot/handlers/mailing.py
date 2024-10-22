@@ -33,7 +33,7 @@ async def get_mailing_text(message: types.Message, state: FSMContext):
 async def get_birth_mailing_photo(message: types.Message, state: FSMContext):
     # Получаем последнее фото из сообщения
     photo = message.photo[-1]  # Берем самое высокое разрешение # Загружаем фото
-    await state.update_data(photo = photo.file_id)
+    await state.update_data(photo=photo.file_id)
     # Извлекаем текст из состояния
     data = await state.get_data()
     text = data.get("text", "")  # Получаем текст, если он есть
@@ -71,6 +71,6 @@ async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext
     admin.back_to_menu()
     await state.clear()
     await callback.message.answer(
-        text = "Рассылка произведена",
+        text="Рассылка произведена",
         reply_markup=admin.builder.as_markup(resize_keyboard=True)
     )

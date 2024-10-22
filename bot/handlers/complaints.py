@@ -38,8 +38,8 @@ async def complaint_menu_2(callback: types.CallbackQuery, state=FSMContext):
 async def send_complaint_to_admin(message: types.Message, state=FSMContext):
     photo_08 = FSInputFile("static/complaint_menu.png")
     mes = "Жалоба: " + message.text
-    await message.answer("Жалоба была отправлена!")
     await bot.send_message(admin_id, mes)
-    await message.answer_photo(photo_08, complaints[1],
-                               parse_mode='Markdown',
-                               reply_markup=menu.builder.as_markup(resize_keyboard=True))
+    await state.clear()
+    menu.back_to_menu()
+    await message.answer("Жалоба была отправлена!",
+                         reply_markup=menu.builder.as_markup(resize_keyboard=True))
