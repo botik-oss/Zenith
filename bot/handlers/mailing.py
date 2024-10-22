@@ -55,21 +55,29 @@ async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext
 
 @router.callback_query(F.data == "send_post")
 async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
-    data = await state.get_data()
-    photo = data.get("photo", "")
-    t = data.get("text", "")  # Получаем текст, если он есть
-    id_list = await clients.get_clients_number_with_birthday()
-    id_list = []
-    if photo:
-        for id in id_list:
-            await bot.send_photo(photo=photo, chat_id=id, caption=t)
-    else:
-        for id in id_list:
-            await bot.send_message(chat_id=id, text=t)
+    try:
+        data = await state.get_data()
+        photo = data.get("photo", "")
+        t = data.get("text", "")  # Получаем текст, если он есть
+        id_list = await clients.get_clients_number_with_birthday()
+        if photo:
+            for id in id_list:
+                await bot.send_photo(photo=photo, chat_id=id, caption=t)
+        else:
+            for id in id_list:
+                await bot.send_message(chat_id=id, text=t)
+        admin.back_to_menu()
+        await state.clear()
+        await callback.message.answer(
+            text=f"Рассылка произведена для {len(id_list)} пользователей",
+            reply_markup=admin.builder.as_markup(resize_keyboard=True)
+        )
+    except Exception:
+        admin.back_to_menu()
+        await state.clear()
+        await callback.message.answer(
+            text="Произошла ошибка при рассылке (скорее всего некорректный ввод текста)",
+            reply_markup=admin.builder.as_markup(resize_keyboard=True)
+        )
 
-    admin.back_to_menu()
-    await state.clear()
-    await callback.message.answer(
-        text="Рассылка произведена",
-        reply_markup=admin.builder.as_markup(resize_keyboard=True)
-    )
+
