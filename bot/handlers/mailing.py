@@ -45,7 +45,6 @@ async def get_birth_mailing_photo(message: types.Message, state: FSMContext):
 
 @router.callback_query(F.data == "without_photo")
 async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
-    print('2')
     data = await state.get_data()
     t = data.get("text", "")  # Получаем текст, если он есть
 
@@ -56,11 +55,11 @@ async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext
 
 @router.callback_query(F.data == "send_post")
 async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
-    print('1')
     data = await state.get_data()
     photo = data.get("photo", "")
     t = data.get("text", "")  # Получаем текст, если он есть
     id_list = await clients.get_clients_number_with_birthday()
+    id_list = []
     if photo:
         for id in id_list:
             await bot.send_photo(photo=photo, chat_id=id, caption=t)

@@ -48,6 +48,14 @@ class ClientsTelegramDatabase:
                 result = await cursor.fetchone()
                 return result[0] if result else None
 
+    async def get_all_clients_id(self, ) -> list:
+        async with aiosqlite.connect(self.database_path) as connection:
+            async with connection.execute(f'''
+            SELECT telegram_id FROM clients_telegram
+            ''') as cursor:
+                result = await cursor.fetchall()
+                return list(map(lambda x: x[0], result)) if result else None
+
     async def check_client_exist_by_number(self, client_number: int) -> bool:
         async with aiosqlite.connect(self.database_path) as connection:
             async with connection.execute(f'''

@@ -6,7 +6,7 @@ from clients_telegram_database import clients_telegram
 
 
 async def fadsf():
-    print(await clients.get_clients_number_with_birthday())
+    print(await clients_telegram.get_all_clients_id())
 
 
 asyncio.run(fadsf())
