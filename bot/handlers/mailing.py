@@ -46,23 +46,25 @@ async def get_birth_mailing_photo(message: types.Message, state: FSMContext):
 
 @router.callback_query(F.data == "without_photo")
 async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
+    print('2')
     data = await state.get_data()
     t = data.get("text", "")  # Получаем текст, если он есть
 
     admin.sending_mailing_menu()
     await callback.message.answer(t,
-                                  Фreply_markup=admin.builder.as_markup(resize_keyboard=True))
+                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
 
 
-@router.message(F.data == "send_post")
-async def mailing_without_photo(message: types.Message, state: FSMContext):
+@router.callback_query(F.data == "send_post")
+async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
+    print('1')
     data = await state.get_data()
     t = data.get("text", "")  # Получаем текст, если он есть
-    id_list = clients.get_clients_number_with_birthday()
+    id_list = await clients.get_clients_number_with_birthday()
     for id in id_list:
         await bot.send_message(chat_id=id, text=t)
 
     admin.back_to_menu()
     await state.clear()
-    await message.answer("Рассылка произведена",
+    await callback.message.answer("Рассылка произведена",
                           reply_markup=admin.builder.as_markup(resize_keyboard=True))
