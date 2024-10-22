@@ -27,7 +27,6 @@ dp.include_router(mailing_router)
 photo_01 = FSInputFile("static/main_menu.png")
 
 
-# Add a callback handler for the contacts button
 @dp.callback_query(F.data == "contacts")
 async def handle_contacts(callback: types.CallbackQuery) -> None:
     await contacts(callback)
@@ -87,8 +86,8 @@ async def ask_your_question_3(callback: types.CallbackQuery):
 async def ask_your_question_4(callback: types.CallbackQuery):
     await ask_question_4(callback)
 
-
-# Start polling if this script is the main one
 if __name__ == "__main__":
-    dp.run_polling(bot,
-                   allowed_updates=["message", "inline_query", "chat_member", "callback", "callback_query"])
+    dp.run_polling(
+        bot,
+        allowed_updates=["message", "inline_query", "chat_member", "callback", "callback_query"],
+    )
