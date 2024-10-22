@@ -33,8 +33,7 @@ async def get_mailing_text(message: types.Message, state: FSMContext):
 async def get_birth_mailing_photo(message: types.Message, state: FSMContext):
     # Получаем последнее фото из сообщения
     photo = message.photo[-1]  # Берем самое высокое разрешение # Загружаем фото
-    photo_file = await message.bot.download(file=photo.file_id)
-
+    await state.update_data(photo = photo.file_id)
     # Извлекаем текст из состояния
     data = await state.get_data()
     text = data.get("text", "")  # Получаем текст, если он есть
@@ -59,12 +58,19 @@ async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext
 async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
     print('1')
     data = await state.get_data()
+    photo = data.get("photo", "")
     t = data.get("text", "")  # Получаем текст, если он есть
     id_list = await clients.get_clients_number_with_birthday()
-    for id in id_list:
-        await bot.send_message(chat_id=id, text=t)
+    if photo:
+        for id in id_list:
+            await bot.send_photo(photo=photo, chat_id=id, caption=t)
+    else:
+        for id in id_list:
+            await bot.send_message(chat_id=id, text=t)
 
     admin.back_to_menu()
     await state.clear()
-    await callback.message.answer("Рассылка произведена",
-                          reply_markup=admin.builder.as_markup(resize_keyboard=True))
+    await callback.message.answer(
+        text = "Рассылка произведена",
+        reply_markup=admin.builder.as_markup(resize_keyboard=True)
+    )
