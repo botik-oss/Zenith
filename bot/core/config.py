@@ -1,4 +1,4 @@
-CLIENTS_DATABASE = "clients.db"  # Путь к бд клиентов
+CLIENTS_DATABASE = "database/clients.db"  # Путь к бд клиентов
 
 ADMINS_DATABASE = 'database/admins.db'  # Путь к бд админов
 
