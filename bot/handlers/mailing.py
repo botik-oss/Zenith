@@ -11,6 +11,13 @@ router = Router()
 bot = Bot(token=TOKEN)
 
 
+@router.callback_query(F.data == "mailing")
+async def mailing_menu(callback: types.CallbackQuery) -> None:
+    admin.mailing()
+    await callback.message.answer("виды рассылок",
+                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
+
+
 @router.callback_query(F.data == "send_birth_mailing")
 async def send_birth_mailing_text(callback: types.CallbackQuery, state: FSMContext):
     admin.back_to_menu()

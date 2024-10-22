@@ -6,7 +6,7 @@ from core.config import TOKEN
 from fsm.states import Admin
 from database.clients_database import clients
 from keyboards.admin import admin
-
+from database.admins_database import admins
 router = Router()
 bot = Bot(token=TOKEN)
 
@@ -15,13 +15,6 @@ bot = Bot(token=TOKEN)
 async def admin_menu(callback: types.CallbackQuery) -> None:
     admin.build_admin()
     await callback.message.answer("Админка",
-                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
-
-
-@router.callback_query(F.data == "mailing")
-async def mailing_menu(callback: types.CallbackQuery) -> None:
-    admin.mailing()
-    await callback.message.answer("виды рассылок",
                                   reply_markup=admin.builder.as_markup(resize_keyboard=True))
 
 
@@ -61,3 +54,28 @@ async def finish_updating(message: types.Message, state: FSMContext) -> None:
     await state.clear()
     await message.answer("База обновлена",
                          reply_markup=admin.builder.as_markup(resize_keyboard=True))
+
+
+@router.callback_query(F.data == "add_new_admin")
+async def update_database(callback: types.CallbackQuery, state: FSMContext) -> None:
+    admin.cancel()
+    await callback.message.answer("Чтобы добавить нового администратора, отправь его Telegram id",
+                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
+    await state.set_state(Admin.adding_administrator)
+
+
+@router.message(Admin.adding_administrator)
+async def registrate_account(message: types.Message, state: FSMContext) -> None:
+    id_administrator = message.text
+    if not id_administrator.isdigit():
+        admin.cancel()
+        await message.answer("Вы ввели не Telegram id",
+                             reply_markup=admin.builder.as_markup(resize_keyboard=True))
+        await state.set_state(Admin.adding_administrator)
+
+    else:
+        await state.clear()
+        await admins.add_new_admin(int(id_administrator))
+        admin.back_to_menu()
+        await message.answer("Новый администратор успешно добавлен",
+                                   reply_markup=admin.builder.as_markup(resize_keyboard=True))

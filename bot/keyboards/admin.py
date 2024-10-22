@@ -51,10 +51,16 @@ class Admin:
             callback_data="send_post"
         )
 
+        self.button_10 = types.InlineKeyboardButton(
+            text="Добавить нового администратора",
+            callback_data="add_new_admin"
+        )
+
     def build_admin(self) -> None:
         self.builder = InlineKeyboardBuilder()
         self.builder.row(self.button_2)
         self.builder.row(self.button_3)
+        self.builder.row(self.button_10)
         self.builder.row(self.button_1)
 
     def cancel(self) -> None:

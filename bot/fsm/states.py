@@ -11,7 +11,7 @@ class Admin(StatesGroup):
     mailing = State()
     mailing_photo = State()
     sending_mailing_with_photo = State()
-
+    adding_administrator = State()
 
 class Complaint_menu(StatesGroup):
     complaint = State()
