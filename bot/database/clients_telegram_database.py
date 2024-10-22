@@ -1,5 +1,4 @@
 from typing import Optional
-
 import aiosqlite
 
 from core import config

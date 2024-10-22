@@ -1,5 +1,6 @@
 from aiogram import types, Bot
 from aiogram.types import FSInputFile
+
 from core.constants import (freebet_birth,
                             freebet_reg, freebet_link_discription01, freebet_link_discription02)
 from core import config
@@ -34,7 +35,6 @@ async def free_bet_03(callback: types.CallbackQuery):
     try:
         # Проверка первого чата
         user_channel_status = await bot.get_chat_member(chat_id='-1002447096182', user_id=user_id)
-        print(user_channel_status.status)
         if user_channel_status.status != 'member' and user_channel_status.status != 'administrator':
             menu.channel()
             await callback.message.answer_photo(photo_04, freebet_link_discription02,

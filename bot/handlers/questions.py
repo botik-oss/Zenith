@@ -1,5 +1,6 @@
 from aiogram import types
 from aiogram.types import FSInputFile
+
 from keyboards.menu import menu
 from core.constants import question, questions
 

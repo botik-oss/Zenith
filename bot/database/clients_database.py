@@ -8,6 +8,7 @@ import aiosqlite
 from core import config
 from database.clients_telegram_database import clients_telegram
 from database.clients_telegram_database import TABLE_NAME as TELEGRAM_TABLE_NAME
+
 CLIENTS_DATABASE = config.CLIENTS_DATABASE
 TABLE_NAME = "clients"
 
