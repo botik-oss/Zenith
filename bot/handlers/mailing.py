@@ -10,6 +10,7 @@ from database.clients_database import clients
 router = Router()
 bot = Bot(token=TOKEN)
 
+
 @router.callback_query(F.data == "send_birth_mailing")
 async def send_birth_mailing_text(callback: types.CallbackQuery, state: FSMContext):
     admin.back_to_menu()
@@ -49,12 +50,12 @@ async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext
     t = data.get("text", "")  # Получаем текст, если он есть
 
     admin.sending_mailing_menu()
-    await callback.message.answer(text=t,
+    await callback.message.answer(t,
                                   Фreply_markup=admin.builder.as_markup(resize_keyboard=True))
 
 
-@router.callback_query(F.data == "send_post")
-async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext):
+@router.message(F.data == "send_post")
+async def mailing_without_photo(message: types.Message, state: FSMContext):
     data = await state.get_data()
     t = data.get("text", "")  # Получаем текст, если он есть
     id_list = clients.get_clients_number_with_birthday()
@@ -63,7 +64,5 @@ async def mailing_without_photo(callback: types.CallbackQuery, state: FSMContext
 
     admin.back_to_menu()
     await state.clear()
-    await callback.message.answer("Рассылка произведена",
-                                  reply_markup=admin.builder.as_markup(resize_keyboard=True))
-
-
+    await message.answer("Рассылка произведена",
+                          reply_markup=admin.builder.as_markup(resize_keyboard=True))

@@ -61,15 +61,16 @@ class ClientsDatabase:
 
     async def get_clients_number_with_birthday(self):
         today = datetime.now().strftime('%d/%m')
-
         async with aiosqlite.connect(self.database_path) as connection:
             async with connection.cursor() as cursor:
                 await cursor.execute(f"""
-                    SELECT {TABLE_NAME}.id 
+                    SELECT {TABLE_NAME}.client_number 
                     FROM {TABLE_NAME}
-                    JOIN {TELEGRAM_TABLE_NAME} ON {TABLE_NAME}.id = {TELEGRAM_TABLE_NAME}.client_id
+                    JOIN {TELEGRAM_TABLE_NAME} ON {TABLE_NAME}.client_number = {TELEGRAM_TABLE_NAME}.client_number
                     WHERE SUBSTR({TABLE_NAME}.date_of_birth, 1, 5) = ?
                 """, (today,))
+                results = await cursor.fetchall()
+                return list(map(lambda x: x[0], results))
 
     async def get_user_data_by_id(self, telegram_id: int) -> Optional[dict[str: str, ]]:
         async with aiosqlite.connect(self.database_path) as connection:
