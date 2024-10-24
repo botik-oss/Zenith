@@ -60,7 +60,7 @@ class ClientsDatabase:
         except Exception as e:
             raise Exception(f"Ошибка при обновлении базы данных: {e}")
 
-    async def get_clients_number_with_birthday(self):
+    async def get_clients_number_with_birthday(self) -> tuple:
         today = datetime.now().strftime('%d/%m')
         async with aiosqlite.connect(self.database_path) as connection:
             async with connection.cursor() as cursor:
@@ -72,9 +72,9 @@ class ClientsDatabase:
                 WHERE SUBSTR(t.date_of_birth, 1, 5) = ?
                 """, (today,))
                 results = await cursor.fetchall()
-                return list(map(lambda x: x[0], results))
+                return tuple(map(lambda x: x[0], results))
 
-    async def get_user_data_by_id(self, telegram_id: int) -> dict:
+    async def get_user_data_by_id(self, telegram_id: int) -> Optional[dict]:
         async with aiosqlite.connect(self.database_path) as connection:
             async with connection.execute(f'''
             SELECT t.name, t.gender, t.date_of_birth

@@ -46,6 +46,6 @@ questions = {'Потеряли карту клиента?': "Необходим�
                                              '3.Отсутствие прописки \n'
                                              '4.Отсутствие оригиналов документов \n'}
 
-channel_url = "https://t.me/zenith_scam"
+channel_url = "https://t.me/zenit_krsk_chat"
 
-group_url = "https://t.me/+w_LmQgA8Nz82Zjcy"
+group_url = "https://t.me/zenit_bk_krsk"

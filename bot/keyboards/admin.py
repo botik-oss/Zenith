@@ -47,7 +47,7 @@ class Admin:
         )
 
         self.button_9 = types.InlineKeyboardButton(
-            text="Разослать всем именинникам",
+            text="Разослать сообщение указанным пользователям",
             callback_data="send_post"
         )
 
