@@ -9,52 +9,52 @@ class Menu:
     def __init__(self):
         self.builder = InlineKeyboardBuilder()
         self.button_1 = types.InlineKeyboardButton(
-            text="Акции",
+            text="📈 Акции 📈",
             callback_data="stocks"
         )
         self.button_2 = types.InlineKeyboardButton(
-            text="Адреса",
+            text="📌 Адреса 📌",
             callback_data="adresses"
         )
         self.button_3 = types.InlineKeyboardButton(
-            text="Частые вопросы",
+            text="❔ Частые вопросы ❔",
             callback_data="questions"
         )
         self.button_4 = types.InlineKeyboardButton(
-            text="Контакты",
+            text="☎️ Контакты ☎️",
             callback_data="contacts"
         )
         self.button_5 = types.InlineKeyboardButton(
-            text="Жалобы",
+            text="✉️ Жалобы ✉️",
             callback_data="complaint_1"
         )
         self.button_6 = types.InlineKeyboardButton(
-            text="Личный кабинет",
+            text="👤 Личный кабинет 👤",
             callback_data="account"
         )
         self.button_7 = types.InlineKeyboardButton(
-            text="главное меню",
+            text="Главное меню",
             callback_data="menu"
         )
         self.button_8 = types.InlineKeyboardButton(
-            text="фрибет за регистрацию",
+            text="Фрибет за регистрацию",
             callback_data="freebet_reg"
         )
         self.button_9 = types.InlineKeyboardButton(
-            text="фрибет в день рождения",
+            text="Фрибет в день рождения",
             callback_data="freebet_birth"
         )
         self.button_10 = types.InlineKeyboardButton(
-            text="группа с розыгрышами",
+            text="Группа с розыгрышами",
             callback_data="group"
         )
         self.question_buttons = []  # Список для хранения кнопок вопросов def back_to_menu(self):
         self.button_11 = types.InlineKeyboardButton(
-            text="оставить жалобу",
+            text="Оставить жалобу",
             callback_data="complaint_2"
         )
         self.button_12 = types.InlineKeyboardButton(
-            text="отмена",
+            text="Отмена",
             callback_data="complaint_1"
         )
         self.button_13 = types.InlineKeyboardButton(
@@ -74,15 +74,15 @@ class Menu:
             callback_data="question_4"
         )
         self.button_17 = types.InlineKeyboardButton(
-            text="подписаться",
+            text="Подписаться",
             url=channel_url
         )
         self.button_18 = types.InlineKeyboardButton(
-            text="группа с розыгрышами",
+            text="Группа с розыгрышами",
             url=group_url
         )
         self.button_19 = types.InlineKeyboardButton(
-            text="отмена",
+            text="Отмена",
             callback_data="cancel"
         )
         self.button_20 = types.InlineKeyboardButton(

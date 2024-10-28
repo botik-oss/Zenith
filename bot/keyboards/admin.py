@@ -22,27 +22,27 @@ class Admin:
         )
 
         self.button_4 = types.InlineKeyboardButton(
-            text="рассылка по именинникам",
+            text="Рассылка по именинникам",
             callback_data="send_birth_mailing"
         )
 
         self.button_5 = types.InlineKeyboardButton(
-            text="рассылка всем",
+            text="Рассылка всем",
             callback_data="all_mailing"
         )
 
         self.button_6 = types.InlineKeyboardButton(
-            text="рассылка по номеру игрока",
+            text="Рассылка по номеру игрока",
             callback_data="number_mailing"
         )
 
         self.button_7 = types.InlineKeyboardButton(
-            text="отмена",
+            text="Отмена",
             callback_data="admin"
         )
 
         self.button_8 = types.InlineKeyboardButton(
-            text="без фото",
+            text="Без фото",
             callback_data="without_photo"
         )
 
