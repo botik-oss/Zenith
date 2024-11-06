@@ -14,9 +14,9 @@ photo_06 = FSInputFile("static/freebet_reg_menu.png")
 photo_07 = FSInputFile("static/group_menu.png")
 
 
-async def stocks(callback: types.CallbackQuery):
+async def stocks(message: types.Message):
     menu.event()
-    await callback.message.answer_photo(photo_04, "Наши акции",
+    await message.answer_photo(photo_04, "Наши акции",
                                         reply_markup=menu.builder.as_markup(resize_keyboard=True))
 
 

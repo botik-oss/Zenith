@@ -8,30 +8,13 @@ from core.constants import channel_url, group_url
 class Menu:
     def __init__(self):
         self.builder = InlineKeyboardBuilder()
-        self.button_1 = types.InlineKeyboardButton(
-            text="📈 Акции 📈",
-            callback_data="stocks"
-        )
-        self.button_2 = types.InlineKeyboardButton(
-            text="📌 Адреса 📌",
-            callback_data="adresses"
-        )
-        self.button_3 = types.InlineKeyboardButton(
-            text="❔ Частые вопросы ❔",
-            callback_data="questions"
-        )
-        self.button_4 = types.InlineKeyboardButton(
-            text="☎️ Контакты ☎️",
-            callback_data="contacts"
-        )
-        self.button_5 = types.InlineKeyboardButton(
-            text="✉️ Жалобы ✉️",
-            callback_data="complaint_1"
-        )
-        self.button_6 = types.InlineKeyboardButton(
-            text="👤 Личный кабинет 👤",
-            callback_data="account"
-        )
+        self.keyboard = types.ReplyKeyboardMarkup(keyboard=[], resize_keyboard=True)
+        self.button_1 = types.KeyboardButton(text="📈 Акции 📈")
+        self.button_2 = types.KeyboardButton(text="📌 Адреса 📌")
+        self.button_3 = types.KeyboardButton(text="❔ Частые вопросы ❔")
+        self.button_4 = types.KeyboardButton(text="☎️ Контакты ☎️")
+        self.button_5 = types.KeyboardButton(text="✉️ Жалобы ✉️")
+        self.button_6 = types.KeyboardButton(text="👤 Личный кабинет 👤")
         self.button_7 = types.InlineKeyboardButton(
             text="Главное меню",
             callback_data="menu"
@@ -85,10 +68,8 @@ class Menu:
             text="Отмена",
             callback_data="cancel"
         )
-        self.button_20 = types.InlineKeyboardButton(
-            text="{ АДМИНКА }",
-            callback_data="admin"
-        )
+        self.button_20 = types.KeyboardButton(text="{ АДМИНКА }")
+
 
     def back_to_menu(self):
         self.builder = InlineKeyboardBuilder()
@@ -97,33 +78,26 @@ class Menu:
     # функция для меню частых вопросв
     def back_to_menu_1(self):
         self.builder = InlineKeyboardBuilder()
-        self.builder.row(self.button_3)
+        self.builder.row(types.InlineKeyboardButton(
+            text="Частые вопросы",
+            callback_data="questions"
+        ))
         self.builder.row(self.button_7)
 
     # функция для меню акций
     def back_to_menu_2(self):
         self.builder = InlineKeyboardBuilder()
-        self.builder.row(self.button_1)
+        self.builder.row(types.InlineKeyboardButton(
+            text="Акции",
+            callback_data="stocks"
+        ))
         self.builder.row(self.button_7)
 
     def main_menu(self):
-        self.builder = InlineKeyboardBuilder()
-        self.builder.row(self.button_1)
-        self.builder.row(self.button_2)
-        self.builder.row(self.button_3)
-        self.builder.row(self.button_4)
-        self.builder.row(self.button_5)
-        self.builder.row(self.button_6)
-
+        self.keyboard.keyboard = [(self.button_1, self.button_2, self.button_3), (self.button_4, self.button_5, self.button_6)]
     def admin_menu(self):
         self.builder = InlineKeyboardBuilder()
-        self.builder.row(self.button_1)
-        self.builder.row(self.button_2)
-        self.builder.row(self.button_3)
-        self.builder.row(self.button_4)
-        self.builder.row(self.button_5)
-        self.builder.row(self.button_6)
-        self.builder.row(self.button_20)
+        self.keyboard.keyboard = [(self.button_1, self.button_2, self.button_3), (self.button_4, self.button_5, self.button_6), (self.button_20,)]
 
     def event(self):
         self.builder = InlineKeyboardBuilder()

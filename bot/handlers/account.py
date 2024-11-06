@@ -1,4 +1,5 @@
 from aiogram import types, Router, F
+from aiogram.filters import Command
 from aiogram.fsm.context import FSMContext
 from aiogram.types import FSInputFile
 
@@ -11,13 +12,13 @@ photo_09 = FSInputFile("static/account_menu.png")
 router = Router()
 
 
-@router.callback_query(F.data == "account")
-async def log_account(callback: types.CallbackQuery, state: FSMContext) -> None:
-    user_id = callback.from_user.id
+@router.message(F.text == "👤 Личный кабинет 👤")
+async def log_account(message: types.Message, state: FSMContext) -> None:
+    user_id = message.from_user.id
 
     if not await clients_telegram.check_client_exist_by_id(user_id):
         acc.back_to_menu()
-        await callback.message.answer_photo(
+        await message.answer_photo(
             photo_09,
             "Личным кабинетом могут пользоваться только авторизованные пользователи!\n"
             "\nЧтобы авторизоваться введи  свой номер игрока",

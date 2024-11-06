@@ -13,9 +13,9 @@ def add_button(text):
     menu.new_button(text, button_callback)
 
 
-async def ask_question(callback: types.CallbackQuery):
+async def ask_question(message: types.Message):
     menu.question()
-    await callback.message.answer_photo(photo_05, question,
+    await message.answer_photo(photo_05, question,
                                         parse_mode='Markdown',
                                         reply_markup=menu.builder.as_markup(resize_keyboard=True))
 

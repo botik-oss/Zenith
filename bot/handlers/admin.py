@@ -12,10 +12,10 @@ router = Router()
 bot = Bot(token=TOKEN)
 
 
-@router.callback_query(F.data == "admin")
-async def admin_menu(callback: types.CallbackQuery) -> None:
+@router.message(F.text == '{ АДМИНКА }')
+async def admin_menu(message: types.Message) -> None:
     admin.build_admin()
-    await callback.message.answer(
+    await message.answer(
         "Админка",
         reply_markup=admin.builder.as_markup(resize_keyboard=True)
     )

@@ -5,9 +5,9 @@ from core.constants import contact
 from keyboards.menu import menu
 
 
-async def contacts(callback: types.CallbackQuery):
+async def contacts(message: types.Message):
     menu.back_to_menu()
     photo_07 = FSInputFile("static/contact_menu.png")
-    await callback.message.answer_photo(photo_07, contact,
-                                        parse_mode='Markdown', reply_markup=menu.builder.as_markup(resize_keyboard=True)
-                                        )
+    await message.answer_photo(photo_07, contact,
+                               parse_mode='Markdown', reply_markup=menu.builder.as_markup(resize_keyboard=True)
+                               )

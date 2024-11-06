@@ -14,12 +14,12 @@ bot = Bot(token=TOKEN)
 router = Router()
 
 
-@router.callback_query(F.data == "complaint_1")
-async def complaint_menu_1(callback: types.CallbackQuery):
+@router.message(F.text == "✉️ Жалобы ✉️")
+async def complaint_menu_1(message: types.Message):
     menu.complaint_1()
     # Отправим меню menu.complaine_1()
     photo_08 = FSInputFile("static/complaint_menu.png")
-    await callback.message.answer_photo(photo_08, complaints[0],
+    await message.answer_photo(photo_08, complaints[0],
                                         parse_mode='Markdown',
                                         reply_markup=menu.builder.as_markup(resize_keyboard=True))
 

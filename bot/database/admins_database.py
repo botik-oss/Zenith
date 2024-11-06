@@ -1,4 +1,6 @@
+from typing import Optional
 import aiosqlite
+
 from core import config
 
 ADMINS_DATABASE = config.ADMINS_DATABASE
@@ -26,6 +28,14 @@ class AdminsDatabase:
                 VALUES (?)
             ''', (telegram_id,))
             await connection.commit()
+
+    async def get_all_admins_id(self, ) -> Optional[list]:
+        async with aiosqlite.connect(self.database_path) as connection:
+            async with connection.execute(f'''
+            SELECT telegram_id FROM {TABLE_NAME}
+            ''') as cursor:
+                result = await cursor.fetchall()
+                return list(map(lambda x: x[0], result)) if result else None
 
     async def check_admin_exist(self, telegram_id: int) -> bool:
         async with aiosqlite.connect(self.database_path) as connection:
