@@ -8,11 +8,9 @@ class Account(StatesGroup):
 class Admin(StatesGroup):
     updating_database = State()
     successful_update = State()
-    mailing_text = State()
+    mailing = State()
     mailing_photo = State()
     sending_mailing_with_photo = State()
-    adding_administrator = State()
-    mailing_file = State()
 
 
 class Complaint_menu(StatesGroup):
