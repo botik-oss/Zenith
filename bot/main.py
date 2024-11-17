@@ -28,19 +28,24 @@ dp.include_router(mailing_router)
 photo_01 = FSInputFile("static/main_menu.png")
 
 
-@dp.message(F.text == '☎️ Контакты ☎️')
+@dp.message(F.text == '☎️ Контакты')
 async def handle_contacts(message: types.Message) -> None:
     await contacts(message)
 
 
-@dp.message(F.text == '📌 Адреса 📌')
+@dp.message(F.text == '📌 Адреса')
 async def handle_adresses(message: types.Message) -> None:
     await adresses(message)
 
 
-@dp.message(F.text == '📈 Акции 📈')
+@dp.message(F.text == '🎁 Акции')
 async def stocks_menu(message: types.Message) -> None:
     await stocks(message)
+
+
+@dp.callback_query(F.data == "stocks")
+async def stocks_menu(callback: types.CallbackQuery) -> None:
+    await stocks(callback.message)
 
 
 @dp.callback_query(F.data == "freebet_birth")
@@ -63,9 +68,14 @@ async def cancel_menu(callback: types.CallbackQuery):
     await cancel(callback)
 
 
-@dp.message(F.text == "❔ Частые вопросы ❔")
+@dp.message(F.text == "❔ Частые вопросы")
 async def ask_your_question(message: types.Message):
     await ask_question(message)
+
+
+@dp.callback_query(F.data == "questions")
+async def stocks_menu(callback: types.CallbackQuery):
+    await ask_question(callback.message)
 
 
 @dp.callback_query(F.data == "question_1")

@@ -14,7 +14,7 @@ bot = Bot(token=TOKEN)
 router = Router()
 
 
-@router.message(F.text == "✉️ Жалобы ✉️")
+@router.message(F.text == "✉️ Жалобы")
 async def complaint_menu_1(message: types.Message):
     menu.complaint_1()
     # Отправим меню menu.complaine_1()

@@ -9,26 +9,26 @@ class Menu:
     def __init__(self):
         self.builder = InlineKeyboardBuilder()
         self.keyboard = types.ReplyKeyboardMarkup(keyboard=[], resize_keyboard=True)
-        self.button_1 = types.KeyboardButton(text="📈 Акции 📈")
-        self.button_2 = types.KeyboardButton(text="📌 Адреса 📌")
-        self.button_3 = types.KeyboardButton(text="❔ Частые вопросы ❔")
-        self.button_4 = types.KeyboardButton(text="☎️ Контакты ☎️")
-        self.button_5 = types.KeyboardButton(text="✉️ Жалобы ✉️")
-        self.button_6 = types.KeyboardButton(text="👤 Личный кабинет 👤")
+        self.button_1 = types.KeyboardButton(text="🎁 Акции")
+        self.button_2 = types.KeyboardButton(text="📌 Адреса")
+        self.button_3 = types.KeyboardButton(text="❔ Частые вопросы")
+        self.button_4 = types.KeyboardButton(text="☎️ Контакты")
+        self.button_5 = types.KeyboardButton(text="✉️ Жалобы")
+        self.button_6 = types.KeyboardButton(text="👤 Личный кабинет")
         self.button_7 = types.InlineKeyboardButton(
             text="Главное меню",
             callback_data="menu"
         )
         self.button_8 = types.InlineKeyboardButton(
-            text="Фрибет за регистрацию",
+            text="🎁 Фрибет за регистрацию",
             callback_data="freebet_reg"
         )
         self.button_9 = types.InlineKeyboardButton(
-            text="Фрибет в день рождения",
+            text="🎁 Фрибет в день рождения",
             callback_data="freebet_birth"
         )
         self.button_10 = types.InlineKeyboardButton(
-            text="Группа с розыгрышами",
+            text="🎁 Группа с розыгрышами",
             callback_data="group"
         )
         self.question_buttons = []  # Список для хранения кнопок вопросов def back_to_menu(self):
@@ -61,7 +61,7 @@ class Menu:
             url=channel_url
         )
         self.button_18 = types.InlineKeyboardButton(
-            text="Группа с розыгрышами",
+            text="🎁 Группа с розыгрышами",
             url=group_url
         )
         self.button_19 = types.InlineKeyboardButton(
@@ -94,10 +94,10 @@ class Menu:
         self.builder.row(self.button_7)
 
     def main_menu(self):
-        self.keyboard.keyboard = [(self.button_1, self.button_2, self.button_3), (self.button_4, self.button_5, self.button_6)]
+        self.keyboard.keyboard = [(self.button_1, self.button_2), (self.button_3, self.button_4), (self.button_5, self.button_6)]
     def admin_menu(self):
         self.builder = InlineKeyboardBuilder()
-        self.keyboard.keyboard = [(self.button_1, self.button_2, self.button_3), (self.button_4, self.button_5, self.button_6), (self.button_20,)]
+        self.keyboard.keyboard = [(self.button_1, self.button_2), (self.button_3, self.button_4), (self.button_5, self.button_6), (self.button_20,)]
 
     def event(self):
         self.builder = InlineKeyboardBuilder()

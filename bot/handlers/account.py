@@ -12,7 +12,7 @@ photo_09 = FSInputFile("static/account_menu.png")
 router = Router()
 
 
-@router.message(F.text == "👤 Личный кабинет 👤")
+@router.message(F.text == "👤 Личный кабинет")
 async def log_account(message: types.Message, state: FSMContext) -> None:
     user_id = message.from_user.id
 
